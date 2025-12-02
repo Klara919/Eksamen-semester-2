@@ -10,6 +10,10 @@ html, body { /* Body element starter */
     flex-direction: column;
 } /* Body element slut */
 
+canvas {
+    background: #f0e6d2;
+  }
+
 /* Import af custom font "Gotham light" */
 @font-face { /* Definerer brugerdefineret font */
     font-family: "Gotham light"; /* Navn på font */
@@ -178,7 +182,7 @@ footer {
     color: #F9E9D2; /* Tekstfarve */
     max-width: 100vw;   /* Maksimal bredde */
     margin-top: 10vh; /* Afstand fra indhold */
-    height: 30vh; /* Højde */
+    height: auto;
 }
 
 /* Sections container */
