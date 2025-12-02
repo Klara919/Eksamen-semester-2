@@ -174,6 +174,25 @@ header { /* Header container */
     font-weight: 300; /* Let vægt */
 }
 
+
+.cta {
+    display: block;      /* Gør sektionen til et blok-element */
+    cursor: pointer;     /* Viser hånd-ikon ved hover */
+    padding: 20px;
+    background-color: #f0f0f0;
+    text-align: center;
+    margin: 10px 0;
+    text-decoration: none; /* Fjerner understregning fra link */
+    color: black;          /* Sørger for at tekstfarve er synlig */
+  }
+  
+  a .cta:hover {
+    background-color: #e0e0e0; /* Effekt ved hover */
+  }
+  
+  
+  
+
 /* Footer Container */
 footer {
     background-color: #341510;  /* Mørk baggrund */
