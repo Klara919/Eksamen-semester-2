@@ -175,23 +175,51 @@ header { /* Header container */
 }
 
 
-.cta {
-    display: block;      /* Gør sektionen til et blok-element */
-    cursor: pointer;     /* Viser hånd-ikon ved hover */
-    padding: 20px;
-    background-color: #f0f0f0;
-    text-align: center;
-    margin: 10px 0;
-    text-decoration: none; /* Fjerner understregning fra link */
-    color: black;          /* Sørger for at tekstfarve er synlig */
-  }
+.menu-sektion h1, .event-sektion h1, .om-os-sektion h1 {
+font-size: 16px;
+margin-left: 10vh;
+}
+
+
+#menu-btn {
+    margin-left: 20vw;
+    margin-top: 10vh;
+    margin-bottom: 30vh;
+}
   
-  a .cta:hover {
-    background-color: #e0e0e0; /* Effekt ved hover */
-  }
-  
-  
-  
+.event-sektion h1 {
+    margin-left: 80vw;
+}
+
+
+
+#event-btn {
+    margin-left: 70vw;
+    margin-top: 10vh;
+    margin-bottom: 30vh;
+}
+
+
+#omos-btn {
+    margin-left: 20vw;
+    margin-top: 10vh;
+}
+
+
+.text-bg {
+  fill: none;
+  stroke: #341510;
+  stroke-width: 50;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.marquee-text {
+  font-size: 30px;
+  font-weight: 700;
+  fill: #f3e1ce;
+  white-space: nowrap;
+}
 
 /* Footer Container */
 footer {

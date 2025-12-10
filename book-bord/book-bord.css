@@ -54,7 +54,7 @@ html, body { /* Body-elementets styling starter */
     text-align: center; /* Centreret tekst */
 } /* Slut link styling */
 
-/* Hover-effekt for navigation links */
+/* Hover-effekt for navigation links */´
 .nav a:hover { /* Hover tilstand */
     background-color: #D96209; /* Orange baggrund */
     color: white; /* Hvid tekst */
@@ -172,6 +172,538 @@ html, body { /* Body-elementets styling starter */
     text-align: center; /* Centreret tekst */
     border-bottom: 1px solid rgba(255,255,255,0.2); /* Lys kant */
 }
+
+
+
+
+
+/* MAIN */
+
+/* Sektion container */
+section {
+    padding: 100px 20px;
+    text-align: center;
+  }
+  
+/* Knappper til antal gæster */
+.guest-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    gap: 20px;
+    justify-content: center;
+    margin-top: 60px;
+    margin-bottom: 5vh;
+  }
+  
+  .guest-btn {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: none;
+    background: #D96209;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .guest-btn:hover {
+    transform: scale(1.1);
+    background: #D96209;
+  }
+  
+#guest-section img {
+  margin-top: -25vh;
+  max-width: 100vh;
+}
+
+  /* DATO- & TIDSVALG */
+#date-section {
+    padding-top: 5vh;
+}
+
+.calendar {
+  max-width: 40vw;
+  margin-top: 2vh;
+  margin: 45px auto;
+  text-align: center;
+}
+  
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+  
+.calendar-header button {
+  width: 35px;
+  height: 45px;
+  background: transparent;
+  color: #D96209;
+  font-size: 22px;
+  border: none;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.calendar-header button:hover {
+  transform: scale(1.2);
+}
+  
+  .selected-date {
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  .calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+  }
+  
+  .calendar-days button {
+    width: 5vw;
+    height: 9vh;
+    border-radius: 50%;
+    border: none;
+    background: #D96209;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .calendar-days button:hover {
+    transform: scale(1.1);
+    background: #D96209;
+  }
+  
+  .calendar-days button.selected {
+    background: #D96209;
+    transform: scale(1.1);
+  }
+
+    
+#date-section img {
+    margin-top: -30vh;
+    max-width: 100vh;
+    pointer-events: none;
+  }
+  
+  /* Holder til tidsknapper */
+  #time-section {
+    padding-top: 20vh;
+  }
+
+  #time-buttons {
+  margin-top: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+
+  max-width: 25vw; /* Tilpas denne – mindre = færre knapper per række */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+  
+  /* Tidsvælger knapper */
+  .time-btn {
+  width: 5vw;
+    height: 9vh;
+    background: #D96209;
+    border-radius: 50px;
+    border: none;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .time-btn:hover {
+    transform: scale(1.08);
+    background: #D96209;
+  }
+  
+  /* Når en tid er valgt – du kan aktivere via JS */
+  .time-btn.selected {
+    background: #D96209;
+    transform: scale(1.1);
+  }
+
+    
+#time-section img {
+  margin-top: -20vh;
+  max-width: 100vh;
+  pointer-events: none;
+} 
+
+
+/* --- BORDVALG SEKTION --- */
+#table-selection h1 {
+    margin-top: -8vh;
+}
+
+.room {
+   z-index: 1; /* sikre bordene ligger ovenpå */
+    width: 100%;
+    max-width: 50vw; /* større end 700px */
+    height: 70vh;    /* højere */
+    margin: 40px auto;
+    position: relative;
+    background: #F9E9D2;
+}
+
+.table {
+    width:4.5vw;
+    height:7.8vh;
+    background:#D96209;
+    color:white;
+    border-radius:6px;
+    font-weight:bold;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:absolute;
+    cursor:pointer;
+    transition:.2s;
+    z-index: 2;
+}
+
+.chosen {
+    font-size: 14px; /* mindsk tallet for mindre tekst */
+}
+.circle { border-radius:50%; }
+
+.table:hover { transform:scale(1.1); background:#D96209; }
+
+.bar {
+    background:#38221B;
+    width:40vw;
+    height:6vh;
+    position:absolute;
+    bottom:5%;
+    border-radius:6px;
+}
+
+
+
+ /* Formular sektion */
+  #form-section {
+    padding-top: 5vh;
+    width: 100vw;
+  }
+
+  
+  /* Tekst deltajer */
+  .details {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* To kolonner til detaljer */
+    max-width: 40vw;
+    margin: auto;
+    text-align: left;
+    gap: 5vh;
+  }
+  
+  /* Formularen */
+
+#form-section form {
+    display: block;
+    width: 100%;               /* full width of parent section */
+}
+
+#form-section form input,
+#form-section form button[type="submit"] {
+    width: 100%;               /* fill the form width */
+    max-width: none;           /* remove previous max-width limits */
+    box-sizing: border-box;    /* include padding & border in width */
+}
+
+/* Make the form container the same width as .details */
+#form-section form {
+    max-width: 650px;          /* same as .details max-width */
+    margin: 40px auto 0 auto;  /* center horizontally */
+}
+
+  /* Oplysningsfelter */
+  input, button {
+    padding: 12px;
+    border: 2px solid #D96209;
+    border-radius: 8px;
+  }
+
+  input {
+    width: 800px; /* or any number that matches the width you want */
+}
+  
+  button[type="submit"] {
+    background: white;
+    color: #D96209;
+    cursor: pointer;
+  }
+
+
+
+/* Tak for tilmeldingen modal */
+#thankyou-modal {
+    display: none; /* starter skjult */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+}
+
+#thankyou-modal.show {
+    display: flex;
+}
+
+#thankyou-modal .thankyou-modal-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+#thankyou-modal .btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #d96209;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+
+/* --------- MOBILE (max 600px) --------- */
+@media (max-width: 600px) {
+
+    /* Sektioner */
+    section {
+        padding: 50px 15px;
+        text-align: center;
+    }
+
+.guest-buttons { 
+  grid-template-columns: repeat(4, 70px); 
+  gap: 15px; 
+  margin-bottom: 60px; 
+} 
+  
+  .guest-btn { 
+    width: 70px; 
+    height: 70px; 
+    font-size: 18px; 
+  }
+
+    #guest-section img {
+        margin-top: 0;
+        max-width: 90vw;
+        height: auto;
+    }
+
+    /* Kalender */
+    .calendar {
+        max-width: 80vw;
+        margin: 30px auto;
+        text-align: center;
+    }
+
+    .calendar-header {
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+
+    /* Kalenderpile - ens størrelse og centreret */
+    .calendar-header button {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #D96209;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .calendar-header button:hover {
+        transform: scale(1.1);
+    }
+
+    .selected-date {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .calendar-weekdays {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    .calendar-days {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 6px;
+    }
+
+    .calendar-days button {
+        width: 12vw;
+        height: 12vw;
+        max-width: 42px;
+        max-height: 42px;
+        border-radius: 50%;
+        border: none;
+        background: #D96209;
+        color: white;
+        font-size: 14px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .calendar-days button:hover,
+    .calendar-days button.selected {
+        transform: scale(1.1);
+        background: #D96209;
+    }
+
+    #date-section img {
+        margin-top: -10vh;
+        max-width: 90vw;
+        height: auto;
+        pointer-events: none;
+    }
+
+    /* Tidsvælger */
+    #time-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 40px;
+        max-width: 90vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .time-btn {
+        width: 20vw;
+        height: 20vw;
+        max-width: 70px;
+        max-height: 70px;
+        font-size: 15px;
+        border-radius: 50px;
+        border: none;
+        background: #D96209;
+        color: white;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .time-btn:hover,
+    .time-btn.selected {
+        transform: scale(1.08);
+        background: #D96209;
+    }
+
+    #time-section img {
+        margin-top: -10vh;
+        max-width: 90vw;
+        height: auto;
+        pointer-events: none;
+    }
+
+    /* Formular */
+    #form-section {
+        padding-top: 5vh;
+    }
+
+    .details {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+        text-align: center;
+        max-width: 90vw;
+        margin: auto;
+    }
+
+    form {
+        width: 95%;
+        max-width: 400px;
+        margin: 0 auto;
+        display: grid;
+        gap: 15px;
+        text-align: left;
+        font-size: 15px;
+    }
+
+    input, button {
+        padding: 3vw;
+        border: 2px solid #D96209;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+
+    button[type="submit"] {
+        max-width: 60vw;
+        padding: 14px;
+        font-size: 16px;
+        margin: 0 auto;
+        display: block;
+        background: white;
+        color: #D96209;
+        cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+        background: #D96209;
+        color: white;
+    }
+
+    #form-section img {
+        margin-top: -10vh;
+        max-width: 90vw;
+        height: auto;
+    }
+
+    /* Tak for tilmeldingen modal */
+    #thankyou-modal .thankyou-modal-content {
+        width: 85%;
+        max-width: 350px;
+        font-size: 15px;
+        padding: 25px;
+    }
+
+    #thankyou-modal .btn {
+        width: 80%;
+        font-size: 16px;
+        padding: 12px;
+    }
+}
+
+
+
 
 
 

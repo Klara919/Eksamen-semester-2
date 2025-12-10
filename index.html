@@ -52,20 +52,57 @@
         <img src="photos/Emmys.png" alt="logo" class="logo">
     </div>
 
+<main>
+<!-- MAIN INDHOLD -->
+<main class="main-content">
+    
+<!-- scroll effect sektion -->
+        <div class="marquee-wrapper">
+  <svg viewBox="0 0 1440 442" class="marquee-svg">
+    <defs>
+      <path id="marqueePath"
+            d="M-71 371.6C126.3 260 593.5 65.8 934.5 80.8c313 13.8 497 136 572 200" />
+    </defs>
 
-    <main class="main-content">
+    <!-- tryk baggrund -->
+    <use href="#marqueePath" class="text-bg" />
+
+    <!-- TEKSTEN, forskudt ned med dy -->
+    <text class="marquee-text" dominant-baseline="middle">
+      <textPath id="marqueeText" href="#marqueePath" startOffset="0%" dy="50">
+    Kom og nyd en kop kaffe i hyggelige omgivelser • Kom og nyd en kop kaffe i hyggelige omgivelser • Kom og nyd en kop kaffe i hyggelige omgivelser  • Kom og nyd en kop kaffe i hyggelige omgivelser  •
+
+      </textPath>
+    </text>
+  </svg>
+</div>
+
+
 <!-- CTA sektioner -->
+ <div class="menu-sektion">
+<h1>VELKOMMEN TIL EMMYS KAFFEBAR</h1>
 <a href="menu/menu.html">
-  <section class="cta" id="cta2">Se Menu</section>
+    <img id="menu-btn" src="photos/menu.svg" alt="menu">
 </a>
+</div>
 
+
+>
+
+<div class="event-sektion">
+    <h1>Vidste du at vi jævnligt holder workshop eller events du kan være med til?</h1>
 <a href="events/events.html">
-    <section class="cta" id="cta1">Book Bord</section>
-  </a>
-
-<a href="om-os/om-os.html">
-  <section class="cta" id="cta3">Kontakt Os</section>
+    <img id="event-btn" src="photos/events.svg" alt="events">
 </a>
+</div>
+
+
+<div class="om-os-sektion">
+    <h1>Hvorfor hedder vi Emmys og hvem er vi egentlig?</h1>
+<a href="om-os/om-os.html">
+    <img id="omos-btn" src="photos/om os.svg" alt="om os">
+</a>
+</div>
 
 
     </main>
