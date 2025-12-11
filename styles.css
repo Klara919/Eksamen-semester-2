@@ -1,18 +1,53 @@
 /* --- BODY & FONT --- */ 
 html, body { /* Body element starter */
-    background-color: #F9E9D2; /* Sætter baggrundsfarven for hele siden */
-    font-family: 'Gotham light', sans-serif; /* Standard font for siden */
-    margin: 0; /* Fjerner standard margin */
-    padding: 0; /* Fjerner standard padding */
-    box-sizing: border-box; /* Inkluderer padding og border i elementets samlede størrelse */
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+    background-color: #F9E9D2;
+    font-family: 'Gotham light', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 } /* Body element slut */
 
 canvas {
     background: #f0e6d2;
   }
+
+  #preloader {
+  position: fixed;
+  inset: 0;
+  background: #F9E9D2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9999;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+/* PRELOADER styles */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: #F9E9D2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 800ms ease, visibility 800ms;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+#preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+
+
 
 /* Import af custom font "Gotham light" */
 @font-face { /* Definerer brugerdefineret font */
@@ -38,9 +73,9 @@ header { /* Header container */
 .nav { /* Navigation container */
     display: flex; /* Flexbox layout */
     justify-content: center; /* Centrerer alle knapper horisontalt */
-    gap: 7vw; /* Afstand mellem knapper */
+    gap: 5vw; /* Afstand mellem knapper */
     width: 100%; /* Fylder hele bredden */
-    padding: 5vw 0; /* Lodret padding for navigation */
+    padding: 4vw 0; /* Lodret padding for navigation */
 }
 
 .nav a { /* Navigation links */
@@ -48,7 +83,7 @@ header { /* Header container */
     color: #D96209; /* Orange tekst */
     text-decoration: none; /* Ingen understregning */
     padding: 1vw 0; /* Lodret padding */
-    font-size: 18px; /* Tekststørrelse */
+    font-size: 14px; /* Tekststørrelse */
     border-radius: 10px; /* Rundede hjørner */
     transition: all 0.3s ease; /* Smooth transition */
     box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Let skygge */
@@ -175,41 +210,12 @@ header { /* Header container */
 }
 
 
-.menu-sektion h1, .event-sektion h1, .om-os-sektion h1 {
-font-size: 16px;
-margin-left: 10vh;
-}
-
-
-#menu-btn {
-    margin-left: 20vw;
-    margin-top: 10vh;
-    margin-bottom: 30vh;
-}
-  
-.event-sektion h1 {
-    margin-left: 80vw;
-}
-
-
-
-#event-btn {
-    margin-left: 70vw;
-    margin-top: 10vh;
-    margin-bottom: 30vh;
-}
-
-
-#omos-btn {
-    margin-left: 20vw;
-    margin-top: 10vh;
-}
 
 
 .text-bg {
   fill: none;
   stroke: #341510;
-  stroke-width: 50;
+  stroke-width: 80;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -220,6 +226,137 @@ margin-left: 10vh;
   fill: #f3e1ce;
   white-space: nowrap;
 }
+
+
+.menu-sektion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* lodret centreret */
+    align-items: center;     /* vandret centreret */
+    min-height: 80vh;        /* højde på sektionen */
+    text-align: center;
+}
+
+.menu-sektion h1 {
+    margin: 0 auto 10vh auto; /* top 0, højre auto, bund 10vh, venstre auto */
+    font-size: 2.5rem;
+    color: #333;
+    display: block; /* h1 er allerede block som standard */
+    text-align: center; /* sørger for tekst inde i h1 er centreret, hvis den fler-linjers */
+}
+  .menu-billeder {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+
+  .menu-billeder img {
+    width: 20vw;
+    height: 40vh;
+    cursor: pointer;
+    transition: transform 0.4s ease; /* glidende overgang */
+  }
+
+  .menu-billeder img:hover {
+    transform: scale(1.05);
+  }
+
+  .menu-knap{
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #D96209;
+    color: white;
+    font-size: 1.2rem;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 4vh;
+  }
+
+  .menu-knap:hover {
+    background-color: #341510;
+    transform: scale(1.05);
+  }
+
+
+.event-sektion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* lodret centreret */
+    align-items: center;     /* vandret centreret */
+    min-height: 80vh;        /* højde på sektionen */
+    text-align: center;
+}
+
+.event-sektion h1 {
+    margin: 0 auto 10vh auto; /* top 0, højre auto, bund 10vh, venstre auto */
+    font-size: 2.5rem;
+    color: #333;
+    display: block; /* h1 er allerede block som standard */
+    text-align: center; /* sørger for tekst inde i h1 er centreret, hvis den fler-linjers */
+}
+
+.event-knap {
+        display: inline-block;
+        padding: 15px 30px;
+        background-color: #D96209;
+        color: white;
+        font-size: 1.2rem;
+        text-decoration: none;
+        border-radius: 10px;
+        transition: background-color 0.3s, transform 0.3s;
+        margin-top: 4vh;
+      }
+    
+      .event-knap:hover {
+        background-color: #341510;
+        transform: scale(1.05);
+      }
+
+
+
+.omos-sektion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* lodret centreret */
+    align-items: center;     /* vandret centreret */
+    min-height: 80vh;        /* højde på sektionen */
+    text-align: center;
+}
+
+.omos-sektion h1 {
+    margin: 0 auto 10vh auto; /* top 0, højre auto, bund 10vh, venstre auto */
+    font-size: 2.5rem;
+    color: #333;
+    display: block; /* h1 er allerede block som standard */
+    text-align: center; /* sørger for tekst inde i h1 er centreret, hvis den fler-linjers */
+}
+
+.omos-knap {
+        display: inline-block;
+        padding: 15px 30px;
+        background-color: #D96209;
+        color: white;
+        font-size: 1.2rem;
+        text-decoration: none;
+        border-radius: 10px;
+        transition: background-color 0.3s, transform 0.3s;
+        margin-top: 4vh;
+      }
+    
+      .omos-knap:hover {
+        background-color: #341510;
+        transform: scale(1.05);
+      }
+
+  @media (max-width: 800px) {
+    .menu-billeder img {
+      width: 150px;
+      height: 150px;
+    }
+  }
 
 /* Footer Container */
 footer {

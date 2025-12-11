@@ -10,12 +10,15 @@
 <body>
 
 <header>
-
-        <div class="logo-container">
+    <!-- Logo container -->
+    <div class="logo-container">
+        <!-- Klikbar logo, linker til forsiden -->
         <a href="../index.html"><img src="../photos/Emmys.svg" alt="Logo" class="logo"> </a>
-        </div>
+    </div>
 
+    <!-- Primær navigation -->
     <nav class="nav">
+        <!-- Links til de forskellige sider på hjemmesiden -->
         <a href="../menu/menu.html">MENU</a>
         <a href="../book-bord/book-bord.html">BOOK BORD</a>
         <a href="../events/events.html">EVENTS</a>
@@ -23,193 +26,200 @@
         <a href="../kontakt/kontakt.html">KONTAKT</a>
     </nav>
 
-   
-<div class="dropdown">
-    <input type="checkbox" id="burger-toggle" />
+    <!-- Dropdown / burger-menu til mobil -->
+    <div class="dropdown">
+        <!-- Checkbox for at styre burger-menuen -->
+        <input type="checkbox" id="burger-toggle" />
 
-    <!-- Burger-menu ikon -->
+        <!-- Burger-menu ikon -->
         <label for="burger-toggle" class="burger-icon">
             <img src="../photos/burgermenu.svg" alt="Burgermenu" />
         </label>
 
-    <!-- Dropdown-menu -->
-            <div class="dropdown-content">
+        <!-- Dropdown-menu indhold -->
+        <div class="dropdown-content">
 
-            <!-- Lukke-kryds -->
-                <label for="burger-toggle" class="close-dropdown">×</label>
+            <!-- Luk-knap for dropdown-menu -->
+            <label for="burger-toggle" class="close-dropdown">×</label>
 
-            <!-- Logo -->
-                <a href="../index.html" class="logo-link">
-                    <img src="../photos/Emmys.svg" alt="Logo" class="logo">
-                </a>
+            <!-- Logo i dropdown-menuen -->
+            <a href="../index.html" class="logo-link">
+                <img src="../photos/Emmys.svg" alt="Logo" class="logo">
+            </a>
 
-            <!-- Menu-links -->
-                <a href="../menu/menu.html">MENU</a>
-                <a href="../book-bord/book-bord.html">BOOK BORD</a>
-                <a href="../events/events.html">EVENTS</a>
-                <a href="../om-os/om-os.html">OM OS</a>
-                <a href="../kontakt/kontakt.html">KONTAKT</a>
-         </div>
-</div>
+            <!-- Navigation links i dropdown-menu -->
+            <a href="../menu/menu.html">MENU</a>
+            <a href="../book-bord/book-bord.html">BOOK BORD</a>
+            <a href="../events/events.html">EVENTS</a>
+            <a href="../om-os/om-os.html">OM OS</a>
+            <a href="../kontakt/kontakt.html">KONTAKT</a>
+        </div>
+    </div>
 </header>
-    
-
 
 <main>
     <!-- SEKTION 1: Vælg antal gæster -->
     <section id="guest-section">
-      <h1>TILMELDING</h1>
-      <p>Hvor mange bliver I?</p>
+        <h1>TILMELDING</h1>
+        <p>Hvor mange bliver I?</p>
 
-      <div class="guest-buttons">
-        <button class="guest-btn" data-guests="1">1</button>
-        <button class="guest-btn" data-guests="2">2</button>
-        <button class="guest-btn" data-guests="3">3</button>
-        <button class="guest-btn" data-guests="4">4</button>
-        <button class="guest-btn" data-guests="5">5</button>
-        <button class="guest-btn" data-guests="6">6</button>
-        <button class="guest-btn" data-guests="6">7</button>
-        <button class="guest-btn" data-guests="6">8</button>
-      </div>
-      <p>Bliver I over 8 personer, så send en mail til os!</p>
-      <img src="../photos/snirkel.png" alt="Snirkel">
+        <!-- Knapper for at vælge antal gæster -->
+        <div class="guest-buttons">
+            <button class="guest-btn" data-guests="1">1</button>
+            <button class="guest-btn" data-guests="2">2</button>
+            <button class="guest-btn" data-guests="3">3</button>
+            <button class="guest-btn" data-guests="4">4</button>
+            <button class="guest-btn" data-guests="5">5</button>
+            <button class="guest-btn" data-guests="6">6</button>
+            <button class="guest-btn" data-guests="6">7</button> <!-- Bemærk: data-guests bør opdateres -->
+            <button class="guest-btn" data-guests="6">8</button> <!-- Bemærk: data-guests bør opdateres -->
+        </div>
+        <p>Bliver I over 8 personer, så send en mail til os!</p>
+        <!-- Dekorativt billede -->
+        <img src="../photos/snirkel.png" alt="Snirkel">
     </section>
 
     <!-- SEKTION 2: Vælg dato -->
     <section id="date-section">
         <h1>Vælg dato</h1>
-      
-        <div class="calendar">
-          <div class="calendar-header">
-            <button class="prev-month">←</button>
-            <div class="selected-date">
-              <span class="day"></span> 
-              <span class="month-year"></span>
-            </div>
-           <button class="next-month">→</button>
-          </div>
-      
-          <div class="calendar-weekdays">
-            <div>Ma</div>
-            <div>Ti</div>
-            <div>On</div>
-            <div>To</div>
-            <div>Fr</div>
-            <div>Lø</div>
-            <div>Sø</div>
-          </div>
-      
-          <div class="calendar-days"></div>
-        </div>
-          <img src="../photos/snirkel.png" alt="Snirkel">
-      </section>
 
-    <!-- SEKTION 3: Vælg tidspunkt -->
-    <section id="time-section">
-      <h1>Vælg tidspunkt</h1>
-      <div id="time-buttons"></div>
+        <!-- Kalender til at vælge dato -->
+        <div class="calendar">
+            <div class="calendar-header">
+                <!-- Knap for forrige måned -->
+                <button class="prev-month">←</button>
+
+                <!-- Viser den valgte dato -->
+                <div class="selected-date">
+                    <span class="day"></span> 
+                    <span class="month-year"></span>
+                </div>
+
+                <!-- Knap for næste måned -->
+                <button class="next-month">→</button>
+            </div>
+
+            <!-- Ugedage vises -->
+            <div class="calendar-weekdays">
+                <div>Ma</div>
+                <div>Ti</div>
+                <div>On</div>
+                <div>To</div>
+                <div>Fr</div>
+                <div>Lø</div>
+                <div>Sø</div>
+            </div>
+
+            <!-- Dage i måneden placeres dynamisk her -->
+            <div class="calendar-days"></div>
+        </div>
+
+        <!-- Dekorativt billede -->
         <img src="../photos/snirkel.png" alt="Snirkel">
     </section>
 
-    <!-- ░░░ BORDVÆLGER – placeres mellem time selection & form ░░░ -->
+    <!-- SEKTION 3: Vælg tidspunkt -->
+    <section id="time-section">
+        <h1>Vælg tidspunkt</h1>
 
-<section id="table-selection">
+        <!-- Dynamisk genererede knapper for tidspunkt -->
+        <div id="time-buttons"></div>
 
-    <h1>BORD BOOKING</h1>
-    <p class="sub">Vælg et bord</p>
-    <p class="chosen">Valgt bord: <span id="chosen-table">ingen</span></p>
+        <!-- Dekorativt billede -->
+        <img src="../photos/snirkel.png" alt="Snirkel">
+    </section>
 
-      <button id="random-table-btn">Vælg et tilfældigt bord</button>
+    <!-- BORDVÆLGER – placeres mellem time selection & form -->
+    <section id="table-selection">
+        <h1>BORD BOOKING</h1>
+        <p class="sub">Vælg et bord</p>
+        <p class="chosen">Valgt bord: <span id="chosen-table">ingen</span></p>
 
-    <div class="room">
+        <!-- Knap til at vælge et tilfældigt bord -->
+        <button id="random-table-btn">Vælg et tilfældigt bord</button>
 
-        <!-- Venstre -->
-        <div class="table circle" data-table="5" style="top:5%; left:10%;">5</div>
-        <div class="table circle" data-table="6" style="top:15%; left:25%;">6</div>
-        <div class="table circle" data-table="7" style="top:5%; left:40%;">7</div>
-        <div class="table square" data-table="4" style="top:55%; left:10%;">4</div>
+        <div class="room">
+            <!-- Bordene i lokalet -->
+            <div class="table circle" data-table="5" style="top:5%; left:10%;">5</div>
+            <div class="table circle" data-table="6" style="top:15%; left:25%;">6</div>
+            <div class="table circle" data-table="7" style="top:5%; left:40%;">7</div>
+            <div class="table square" data-table="4" style="top:55%; left:10%;">4</div>
 
-        <!-- Bund -->
-        <div class="table circle" data-table="3" style="bottom:18%; left:20%;">3</div>
-        <div class="table circle" data-table="2" style="bottom:18%; left:30%;">2</div>
-        <div class="table circle" data-table="1" style="bottom:18%; left:40%;">1</div>
+            <div class="table circle" data-table="3" style="bottom:18%; left:20%;">3</div>
+            <div class="table circle" data-table="2" style="bottom:18%; left:30%;">2</div>
+            <div class="table circle" data-table="1" style="bottom:18%; left:40%;">1</div>
 
-        <div class="bar"></div>
+            <!-- Bar -->
+            <div class="bar"></div>
 
-        <!-- Midt & højre -->
-        <div class="table circle" data-table="8" style="top:45%; left:50%;">8</div>
-
-        <div class="table square" data-table="9"  style="top:5%; right:25%;">9</div>
-        <div class="table square" data-table="16" style="top:20%; right:25%;">16</div>
-
-        <div class="table circle" data-table="10" style="top:5%; right:10%;">10</div>
-        <div class="table circle" data-table="11" style="top:20%; right:10%;">11</div>
-        <div class="table circle" data-table="12" style="top:35%; right:10%;">12</div>
-        <div class="table circle" data-table="13" style="top:50%; right:10%;">13</div>
-
-        <div class="table square" data-table="14" style="top:65%; right:10%;">14</div>
-        <div class="table square" data-table="15" style="top:80%; right:10%;">15</div>
-
-    </div>
-
-</section>
-
+            <div class="table circle" data-table="8" style="top:45%; left:50%;">8</div>
+            <div class="table square" data-table="9"  style="top:5%; right:25%;">9</div>
+            <div class="table square" data-table="16" style="top:20%; right:25%;">16</div>
+            <div class="table circle" data-table="10" style="top:5%; right:10%;">10</div>
+            <div class="table circle" data-table="11" style="top:20%; right:10%;">11</div>
+            <div class="table circle" data-table="12" style="top:35%; right:10%;">12</div>
+            <div class="table circle" data-table="13" style="top:50%; right:10%;">13</div>
+            <div class="table square" data-table="14" style="top:65%; right:10%;">14</div>
+            <div class="table square" data-table="15" style="top:80%; right:10%;">15</div>
+        </div>
+    </section>
 
     <!-- SEKTION 4: Tilmeldingsformular -->
     <section id="form-section">
-      <h1>BOOKING</h1>
-      <div class="details">
-        <div>
-          <strong>ANTAL GÆSTER:</strong> <span id="guest-count">1</span>
+        <h1>BOOKING</h1>
+        <div class="details">
+            <!-- Oversigt over valgte detaljer -->
+            <div>
+                <strong>ANTAL GÆSTER:</strong> <span id="guest-count">1</span>
+            </div>
+            <div>
+                <strong>DATO & TID:</strong> <span id="event-date"></span>
+            </div>
+            <div>
+                <strong>BORD NUMMER:</strong> <span id="chosen-table-display">ingen</span>
+            </div>
         </div>
-        <div>
-          <strong>DATO & TID:</strong> <span id="event-date"></span>
-        </div>
-        <div>
-      <strong>BORD NUMMER:</strong> <span id="chosen-table-display">ingen</span>
-    </div>
-     <div>
 
+        <!-- Formular til booking -->
+        <form id="signup-form">
+            <!-- Skjulte inputs til data -->
+            <input type="hidden" name="antal" id="antal-input">
+            <input type="hidden" id="selected-datetime" name="selected-datetime">
 
+            <!-- Navn input -->
+            <label>Navn:</label>
+            <input type="text" pattern="[A-Za-zÆØÅæøå ]+" title="Navnet må kun indeholde bogstaver" required>
 
-      </div>
+            <!-- Email input -->
+            <label>Email:</label>
+            <input type="email" required>
 
-      <form id="signup-form">
-        <input type="hidden" name="antal" id="antal-input">
-        <input type="hidden" id="selected-datetime" name="selected-datetime">
+            <!-- Telefon input -->
+            <label>Telefon:</label>
+            <input type="tel" pattern="[0-9]*" required>
 
-        <label>Navn:</label>
-        <input type="text" pattern="[A-Za-zÆØÅæøå ]+" title="Navnet må kun indeholde bogstaver" required>
+            <!-- Postnummer input -->
+            <label>Post nr.:</label>
+            <input type="text" id="zipcode" pattern="[0-9]*" required>
 
-        <label>Email:</label>
-        <input type="email" required>
-
-        <label>Telefon:</label>
-        <input type="tel" pattern="[0-9]*" required>
-
-        <label>Post nr.:</label>
-        <input type="text" id="zipcode" pattern="[0-9]*" required>
-
-        <button type="submit">BEKRÆFT BOOKING</button>
-      </form>
+            <!-- Submit knap -->
+            <button type="submit">BEKRÆFT BOOKING</button>
+        </form>
     </section>
 </main>
 
-<!-- Tak modal -->
+<!-- Tak modal, vises efter succesfuld booking -->
 <div id="thankyou-modal">
-  <div class="thankyou-modal-content">
-    <h2>Tak for din booking!</h2>
-    <p>Vi glæder os til at se dig.</p>
-    <a href="../menu/menu.html" class="btn">Se vores menu</a>
-  </div>
+    <div class="thankyou-modal-content">
+        <h2>Tak for din booking!</h2>
+        <p>Vi glæder os til at se dig.</p>
+        <a href="../menu/menu.html" class="btn">Se vores menu</a>
+    </div>
 </div>
-
-</main>
-
-    
 
 <footer>
     <div class="footer-sections">
+        <!-- Adresse -->
         <div class="adresse">
             <h1>ADRESSE</h1>
             <address>
@@ -218,12 +228,14 @@
             </address>
         </div>
 
+        <!-- Kontakt information -->
         <div class="kontakt">
             <h1>KONTAKT</h1>
             <p>Telefon: +45 22 24 24 79</p>
             <p>Email: info@emmyskaffebar.dk</p>
         </div>
 
+        <!-- Åbningstider -->
         <div class="aabningstider">
             <h1>ÅBNINGSTIDER</h1> 
             <p>Mandag - Torsdag <br> 09:00 - 17:30 </p>
@@ -231,6 +243,7 @@
             <p>Lørdag & Søndag <br> 09:30 - 16:00 </p>
         </div>
 
+        <!-- Sociale medier links -->
         <div class="sociale-medier">
             <h1>SOCIALE MEDIER</h1>
             <a href="https://www.instagram.com/emmyskaffebar" aria-label="Emmys Kaffebar on Instagram">
@@ -245,10 +258,8 @@
         </div>
     </div>
 
+    <!-- Copyright -->
     <div class="copyrights">
         <p>© 2024 Emmys Kaffebar. All rights reserved.</p>
     </div>
 </footer>
-
-</body>
-</html>
