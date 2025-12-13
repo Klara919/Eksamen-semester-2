@@ -9,15 +9,14 @@
 </head>
 <body>
 
-    <!-- PRELOADER -->
-<div id="preloader">
-  <video class="preloader-video" autoplay muted loop playsinline>
-    <source src="photos/preloadvideo.mp4" type="video/mp4">
-    Din browser understøtter ikke video.
-  </video>
-</div>
+
 
 <header>
+    <video class="hero-video" autoplay muted loop playsinline>
+    <source src="photos/hero.mp4" type="video/mp4"> Din browser understøtter ikke video.
+    </video>
+
+
         <nav class="nav">
                 <a href="menu/menu.html">MENU</a>
                 <a href="book-bord/book-bord.html">BOOK BORD</a>
@@ -53,33 +52,32 @@
                 <a href="kontakt/kontakt.html">KONTAKT</a>
          </div>
 </div>
+         <!-- Hero sektion -->
+   <div class="logo-container">
+        <img src="photos/Emmys.png" alt="logo" class="hero-logo">
+    </div>
+
+
 </header>
 
-<!-- Hero sektion -->
-   <div class="logo-container">
-        <img src="photos/Emmys.png" alt="logo" class="logo">
-    </div>
+
 
 <main>
 <!-- MAIN INDHOLD -->
 <main class="main-content">
     
-<!-- scroll effect sektion -->
-        <div class="marquee-wrapper">
+<div class="marquee-wrapper">
   <svg viewBox="0 0 1440 442" class="marquee-svg">
     <defs>
-      <path id="marqueePath"
-            d="M-71 371.6C126.3 260 593.5 65.8 934.5 80.8c313 13.8 497 136 572 200" />
+      <!-- LIGE LINJE -->
+      <path id="marqueePath" d="M0 150 L1440 150" />
     </defs>
 
-    <!-- tryk baggrund -->
     <use href="#marqueePath" class="text-bg" />
 
-    <!-- TEKSTEN, forskudt ned med dy -->
     <text class="marquee-text" dominant-baseline="middle">
       <textPath id="marqueeText" href="#marqueePath" startOffset="0%" dy="50">
-    Kom og nyd en kop kaffe i hyggelige omgivelser • Kom og nyd en kop kaffe i hyggelige omgivelser • Kom og nyd en kop kaffe i hyggelige omgivelser  • Kom og nyd en kop kaffe i hyggelige omgivelser  •
-
+        Nyd en kop kaffe i hyggelige omgivelser • Nyd en kop kaffe i hyggelige omgivelser • Nyd en kop kaffe i hyggelige omgivelser • Nyd en kop kaffe i hyggelige omgivelser •
       </textPath>
     </text>
   </svg>
@@ -88,45 +86,16 @@
 
 <!-- sektioner -->
 <div class="menu-sektion">
-  <h1>VELKOMMEN TIL EMMYS KAFFEBAR</h1>
 
   <div class="menu-billeder">
-    <img src="photos/avokadomad.png" alt="Avokadomad">
-    <img src="photos/abitofall.png" alt="Lidt af det hele">
-    <img src="photos/jordbaer.png" alt="Jordbærgrød">
-    <img src="photos/laksemad.png" alt="Laksemad">
+    <img src="photos/kaffe.png" alt="Avokadomad">
+    <img src="photos/Tapas.png" alt="Lidt af det hele">
+    <img src="photos/Vin.png" alt="Jordbærgrød">
   </div>
 
   <a href="/menu/menu.html" class="menu-knap">Se hele menuen</a>
 </div>
 
-
-<div class="event-sektion">
-  <h1>WORKSHOP & EVENTS</h1>
-
-  <div class="event-billeder">
-    <img src="photos/" alt="Avokadomad">
-    <img src="photos/" alt="Lidt af det hele">
-    <img src="photos/" alt="Jordbærgrød">
-    <img src="photos/" alt="Laksemad">
-  </div>
-
-  <a href="/events/events.html" class="event-knap">Se alle events</a>
-</div>
-
-
-<div class="omos-sektion">
-  <h1>OM EMMYS</h1>
-
-  <div class="omos-billeder">
-    <img src="photos/" alt="Avokadomad">
-    <img src="photos/" alt="Lidt af det hele">
-    <img src="photos/" alt="Jordbærgrød">
-    <img src="photos/" alt="Laksemad">
-  </div>
-
-  <a href="/om-os/om-os.html" class="omos-knap">Vores historie</a>
-</div>
 
 
 </main>

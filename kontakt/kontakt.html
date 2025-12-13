@@ -55,7 +55,70 @@
 
 <main>
 
+    <!--mailbox container /parent-->
+    <div class="mailbox">
 
+        <div id="mailboxtekst">
+            <h1>Har du spørgsmål til os?</h1>
+            <p>Så du kan ring til os på +45 22 24 24 79 mellem 9:00 og 17:00.<br>eller sende os en mail med alle  dine henvedelser.</p>
+            <p>Vi glæder os til at høre fra dig.</p>
+        </div>
+
+        <img src="icons/Frame 73.png" alt="Baggrund" class="baggrund">
+        
+        <div id="formular">
+            <form action="#" method="post" class="sendbox">
+                <label for="name">Name: </label><br>
+                <input type="text" id="name" name="name"><br><br>
+                <label for="email">E-mail: </label><br>
+                <input type="email" id="email" name="email"><br><br>
+                <div id="popup">
+                <button id="CloseB" onclick="Closepop()"><img src="icons/Kryds.svg" alt=""></button>
+                <p>Tak for din mail, beskeden er nu sendt afsted!</p>
+                </div>
+                <label for="message">Message: </label><br>
+                <textarea id="message" name="message"></textarea><br><br>
+            </form>   
+            <img src="icons/Frame 71.png" alt="formular" id="paper">
+        </div>
+
+        <img src="icons/Frame 70.png" alt="envelope" class="envelope">
+
+         <button id="button" onclick="Sendb()"><p>Send</p></button>
+
+    </div>
+   
+    <div class="some">
+
+        <div id="sometekst">
+            <h1>Følg os på de sociale medier</h1>
+            <p>følg med på Instagram, Facebook eller tiktok, og se hvad der sker hos os</p>
+        </div>
+        
+        <div class="ikoner">
+            <div id="instagram">
+                <a href="https://www.instagram.com/emmyskaffebar/?hl=da"><img src="icons/teenyicons_instagram-solid.png" alt="instagram"></a>
+            </div>
+
+            <div id="facebook">
+                <a href="https://www.facebook.com/emmyskaffebar/?locale=da_DK"><img src="icons/Vector.png" alt="facebook"></a>
+                
+            </div>
+
+            <div id="tiktok">
+                <a href="https://www.tiktok.com/discover/emmys-kaffebar"><img src="icons/tiktok.png" alt="tiktok"></a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="lokation">
+        <h1>vi er til at finde her</h1>
+        <div id="pin">
+            <img src="icons/Pin.png" alt="klik her, for at komme til maps">
+        </div>    
+        <a href="https://maps.app.goo.gl/TDw8MyafjPMd7q6Y7"><img src="icons/Frame 24.png" alt="maps" class="maps"></a>
+    </div>
 
 
     

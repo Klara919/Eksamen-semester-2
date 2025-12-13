@@ -175,6 +175,208 @@ html, body { /* Body-elementets styling starter */
 
 
 
+/* ============= SIDE-OPBYGNING ============= */
+
+.menu-page {
+  position: relative;
+  max-width: 1100px;
+  margin: 80px auto 80px;     /* mere luft fra toppen */
+  padding: 0 1.5rem 120px;    /* ekstra bund-padding så bund-krummelure ikke rammer teksten */
+}
+
+/* Overskrift */
+
+.menu-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.menu-heading {
+
+ font-family: "Gotham", "Gotham Bold", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin: 0 0 20px;
+  color: #d96207; /* orange */
+}
+
+/* ============= TABS (MAD / DRIKKE) ============= */
+
+.menu-tabs {
+  display: flex;
+  gap: 10px;
+    justify-content: center;
+
+}
+
+.menu-tab {
+  flex: 1 1 0; /* alle knapper får samme bredde */
+  max-width: 120px;
+  padding: 10px 0; /* fjern ekstra horizontal padding for ens bredde */
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 10px;
+  border: 1px solid #d96207;
+  background: transparent;
+  color: #d96207;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  text-align: center; /* centrerer teksten */
+}
+
+.menu-tab.is-active {
+  background: #d96207;
+  color: #F9E9D2;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.menu-tab:focus-visible {
+  outline: 2px solid #d96207;
+  outline-offset: 2px;
+}
+
+
+
+/* ============= INDHOLD (MAD / DRIKKE) ============= */
+
+.menu-content {
+  display: none;
+}
+
+.menu-content.is-visible {
+  display: block;
+}
+
+/* To kolonner */
+
+.menu-columns {
+  display: flex;
+  gap: 90px;                 /* afstand mellem MORGENMAD og FROKOST */
+  align-items: flex-start;
+  justify-content: center;   /* ★ centrér kolonnerne vandret */
+  margin-top: 170px;         /* rykker teksten ned fra overskrift + top-krummelure */
+}
+
+.menu-section {
+  flex: 1;
+  max-width: 340px;          /* valgfrit: gør hver kolonne lidt smallere, så centring ser pænere ud */
+}
+
+/* Sektionstitler */
+
+.menu-section-title {
+  font-family: "Gotham", "Gotham Bold", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 0 0 24px;
+}
+
+.menu-section-title--kage {
+  margin-top: 40px;
+}
+
+/* Menu-elementer */
+
+.menu-item {
+  margin-bottom: 20px;
+}
+
+.menu-item h3 {
+  font-family: "Gotham", "Gotham Bold", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  margin: 0 0 3px;
+  color: #341510;
+}
+
+.menu-item p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #341510;
+
+}
+
+.price {
+  margin-top: 3px;
+  font-weight: 600;
+}
+
+/* Note-tekst */
+
+.menu-subnote {
+  margin-top: 6px;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.menu-note {
+  margin-top: 60px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* ============= KRUMMELURER ============= */
+
+.menu-ornament {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Top-krummelure */
+.menu-ornament--top {
+  top: 155px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 800px;
+  width: 100%;
+}
+
+/* Bund-krummelure */
+.menu-ornament--bottom {
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 800px;
+  width: 100%;
+}
+
+/* ============= RESPONSIVT ============= */
+
+@media (max-width: 1100px) {
+  .menu-columns {
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 150px;
+    margin-left: 0;          /* ★ fjern flytning mod højre */
+    align-items: center;     /* ★ centrér kolonnerne i kolonne-layout */
+  }
+
+  .menu-section {
+    max-width: 400px;        /* lidt bredere på mobil/tablet */
+  }
+
+  .menu-ornament--top {
+    top: 120px;
+    width: 90%;
+  }
+
+  .menu-ornament--bottom {
+    bottom: 20px;
+  }
+}
+
+
+
+
+
+
+
 /* --- Footer Container ---*/
 footer {
     background-color: #341510;  /* Mørk baggrund */

@@ -1,207 +1,146 @@
-document.addEventListener('DOMContentLoaded', () => { 
-    // Når hele DOM'en er indlæst, kører denne funktion
+document.addEventListener('DOMContentLoaded', () => {
 
-    const form = document.getElementById('signup-form'); 
-    // Henter formular-elementet
-    const modal = document.getElementById('thankyou-modal'); 
-    // Henter modal til "Tak for tilmeldingen"
-    
-    // --- SEKTIONER ---
-    const guestSection = document.getElementById("guest-section"); 
-    const dateSection = document.getElementById("date-section"); 
-    const timeSection = document.getElementById("time-section"); 
-    const tableSection = document.getElementById("table-selection"); 
-    const formSection = document.getElementById("form-section"); 
-    // Henter alle de nødvendige sektioner på siden
+  // --- FORM OG MODAL ---
+  const form = document.getElementById('signup-form');
+  const modal = document.getElementById('thankyou-modal');
 
-    // STARTSKJUL ALLE SEKTIONER UNDTAGEN GUEST
-    dateSection.style.display = "none"; 
-    timeSection.style.display = "none"; 
-    tableSection.style.display = "none"; 
-    formSection.style.display = "none"; 
-    // Gør alle andre sektioner skjulte til fra start
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    modal.classList.add('show');
+    form.reset();
+  });
 
-    // --- FORM SUBMISSION ---
-    form.addEventListener('submit', e => { 
-        e.preventDefault(); 
-        // Forhindrer formular i at reload siden
-        modal.classList.add('show'); 
-        // Viser tak-for-tilmeldingen modal
-        form.reset(); 
-        // Nulstiller formularfelter
-        document.querySelectorAll(".time-btn").forEach(b => b.classList.remove("selected")); 
-        document.querySelectorAll(".calendar-days button").forEach(b => b.classList.remove("selected")); 
-        document.querySelectorAll(".table").forEach(t => t.classList.remove("selected")); 
-        // Fjerner alle tidligere valg
+  // --- ANTAL GÆSTER ---
+  const guestButtons = document.querySelectorAll(".guest-btn");
+  const guestCountEl = document.getElementById("guest-count");
+  const antalInput = document.getElementById("antal-input");
+  const dateSection = document.getElementById("date-section");
+
+  guestButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const antal = btn.dataset.guests;
+      guestCountEl.textContent = antal;
+      antalInput.value = antal;
+      // Scroll til dato-sektion
+      dateSection.scrollIntoView({ behavior: "smooth" });
     });
+  });
 
-    // --- GUEST SELECTION ---
-    const guestBtns = document.querySelectorAll(".guest-btn"); 
-    const guestSpan = document.getElementById("guest-count"); 
-    const antalInput = document.getElementById("antal-input"); 
-    // Henter knapper og felter til gæstevalg
+  // --- KALENDER MED MÅNED + ÅR + SLØREDE DAGE ---
+  const calendarDaysContainer = document.querySelector(".calendar-days");
+  const calendarHeaderMonthYear = document.querySelector(".month-year");
+  const timeSection = document.getElementById("time-section");
+  const prevMonthBtn = document.querySelector(".prev-month");
+  const nextMonthBtn = document.querySelector(".next-month");
+  const today = new Date();
+  let currentYear = today.getFullYear();
+  let currentMonth = today.getMonth();
 
-    guestBtns.forEach(btn => {              // Gå igennem hver gæste-knap
-    btn.addEventListener("click", () => {   // Tilføj klik-event til knappen
-    guestBtns.forEach(b => b.setAttribute("aria-pressed","false"));  // Sæt alle knappers "aria-pressed" til false (nulstil alle knapper for screenreaders)
-    btn.setAttribute("aria-pressed","true");  // Sæt den klikkede knap til "true" (markeret valgt for screenreaders)
-        
-    const guests = btn.dataset.guests; // Hent antal gæster fra data-attribute
-    guestSpan.textContent = guests; 
-    antalInput.value = guests; // Opdater tekst og inputfelt
-            
-     // VIS DATE SECTION & SCROLL
-    dateSection.style.display = "block"; 
-    dateSection.scrollIntoView({ behavior: "smooth", block: "start" }); // Vis dato-sektionen og scroll til den
-    
+  const monthNames = [
+    "Januar","Februar","Marts","April","Maj","Juni",
+    "Juli","August","September","Oktober","November","December"
+  ];
+
+  function generateCalendar(year, month) {
+    calendarHeaderMonthYear.textContent = `${monthNames[month]} ${year}`;
+    calendarDaysContainer.innerHTML = "";
+
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const firstDay = new Date(year, month, 1).getDay();
+    const offset = firstDay === 0 ? 6 : firstDay - 1; // uge starter mandag
+
+    // tomme divs før månedsstart
+    for (let i = 0; i < offset; i++) {
+      calendarDaysContainer.appendChild(document.createElement("div"));
+    }
+
+    const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      const dayBtn = document.createElement("button");
+      dayBtn.textContent = day;
+      const dayDate = new Date(year, month, day);
+
+      // Slør fortidige dage kun i nuværende måned
+      if (year === today.getFullYear() && month === today.getMonth() && dayDate < todayDate) {
+        dayBtn.classList.add("disabled");
+        dayBtn.disabled = true;
+      }
+
+      calendarDaysContainer.appendChild(dayBtn);
+
+      if (!dayBtn.disabled) {
+        dayBtn.addEventListener("click", () => {
+          // Fjern markering
+          calendarDaysContainer.querySelectorAll("button").forEach(btn => btn.classList.remove("selected"));
+          dayBtn.classList.add("selected");
+          // Opdater dato i formular
+          const formattedDate = `${day}/${month + 1}/${year}`;
+          document.getElementById("time-date").textContent = formattedDate;
+          // Scroll til tidspunkt
+          timeSection.scrollIntoView({ behavior: "smooth" });
         });
+      }
+    }
+  }
+
+  generateCalendar(currentYear, currentMonth);
+
+  // månedsskift
+  prevMonthBtn.addEventListener("click", () => {
+    currentMonth--;
+    if (currentMonth < 0) {
+      currentMonth = 11;
+      currentYear--;
+    }
+    generateCalendar(currentYear, currentMonth);
+  });
+
+  nextMonthBtn.addEventListener("click", () => {
+    currentMonth++;
+    if (currentMonth > 11) {
+      currentMonth = 0;
+      currentYear++;
+    }
+    generateCalendar(currentYear, currentMonth);
+  });
+
+  // --- TIDSPUNKTER ---
+  const timeButtonsContainer = document.getElementById("time-buttons");
+  const timeSpots = ["10:00","10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00"];
+  
+  timeSpots.forEach(time => {
+    const btn = document.createElement("button");
+    btn.classList.add("time-btn");
+    btn.textContent = time;
+    timeButtonsContainer.appendChild(btn);
+
+    btn.addEventListener("click", () => {
+      // Marker valgt
+      timeButtonsContainer.querySelectorAll("button").forEach(b => b.classList.remove("selected"));
+      btn.classList.add("selected");
+
+      // Opdater dato & tid i formular
+      const date = document.getElementById("time-date").textContent;
+      document.getElementById("time-date").textContent = `${date} kl. ${time}`;
+
+      // Scroll til bord
+      const tableSection = document.getElementById("table-selection");
+      tableSection.scrollIntoView({ behavior: "smooth" });
     });
+  });
 
-    // --- CALENDAR SECTION ---
-    const calendarDays = document.querySelector(".calendar-days"); 
-    const daySpan = document.querySelector(".selected-date .day"); 
-    const monthYearSpan = document.querySelector(".selected-date .month-year"); 
-    const prevMonthBtn = document.querySelector(".prev-month"); 
-    const nextMonthBtn = document.querySelector(".next-month"); 
-    const eventDateSpan = document.getElementById("event-date"); 
-    const selectedDatetime = document.getElementById("selected-datetime"); 
-    // Henter kalender-elementer og felter til valgt dato/tid
+  // --- BORD VALG ---
+  const tableBtns = document.querySelectorAll(".table");
+  const bordValgEl = document.getElementById("bord-valg");
+  const formSection = document.getElementById("form-section");
 
-    let currentDate = new Date(); 
-    // Initialiserer kalender med dagens dato
-
-    function renderCalendar(date) {
-        calendarDays.innerHTML = ""; 
-        // Rydder eksisterende dage
-        const year = date.getFullYear(); 
-        const month = date.getMonth(); 
-        const firstDay = new Date(year, month, 1).getDay(); 
-        const daysInMonth = new Date(year, month + 1, 0).getDate(); 
-        // Beregn antal dage og første ugedag
-
-        daySpan.textContent = String(date.getDate()).padStart(2,"0"); 
-        monthYearSpan.textContent = date.toLocaleString("da-DK", { month: "long", year: "numeric" }); 
-        // Opdater tekst til valgt dag og måned/år
-
-        let startDay = firstDay === 0 ? 6 : firstDay - 1; 
-        // Mandag = startdag
-        for(let i=0; i<startDay; i++) calendarDays.appendChild(document.createElement("div")); 
-        // Tilføj tomme divs for at starte ugen korrekt
-
-        for(let d=1; d<=daysInMonth; d++) {
-            const btn = document.createElement("button"); 
-            btn.textContent = d; 
-            const btnDate = new Date(year, month, d); 
-            const today = new Date(); 
-            today.setHours(0,0,0,0); 
-            if(btnDate < today) { btn.disabled = true; btn.style.opacity = 0.5; } 
-            // Deaktiver tidligere dage
-
-            btn.addEventListener("click", () => {
-                document.querySelectorAll(".calendar-days button").forEach(b => b.classList.remove("selected")); 
-                btn.classList.add("selected"); 
-                daySpan.textContent = String(d).padStart(2,"0"); 
-                eventDateSpan.textContent = btnDate.toLocaleDateString("da-DK"); 
-                selectedDatetime.value = btnDate.toISOString().split("T")[0]; 
-                // Opdater valgte dag og skjulte felter
-
-                // VIS TIME SECTION & SCROLL
-                timeSection.style.display = "block"; 
-                timeSection.scrollIntoView({ behavior: "smooth", block: "start" }); 
-
-                renderTimeButtons(btnDate); 
-                // Generer tilgængelige tider
-            });
-
-            calendarDays.appendChild(btn); 
-        }
-    }
-
-    prevMonthBtn.addEventListener("click", () => { currentDate.setMonth(currentDate.getMonth()-1); renderCalendar(currentDate); }); 
-    nextMonthBtn.addEventListener("click", () => { currentDate.setMonth(currentDate.getMonth()+1); renderCalendar(currentDate); }); 
-    // Navigation for måneds-pile
-
-    renderCalendar(currentDate); 
-    // Initial kalender-render
-
-    // --- OPENING HOURS & TIME BUTTONS ---
-    const openingHours = { monday: { open: "09:00", close: "17:30" }, tuesday: { open: "09:00", close: "17:30" }, wednesday: { open: "09:00", close: "17:30" }, thursday: { open: "09:00", close: "17:30" }, friday: { open: "09:00", close: "18:00" }, saturday: { open: "09:30", close: "16:00" }, sunday: { open: "09:30", close: "16:00" } }; 
-    const timeContainer = document.getElementById("time-buttons"); 
-    // Åbningstider og container for tidsknapper
-
-    function convertToMinutes(time) {
-        const [h,m] = time.split(":").map(Number); 
-        return h*60 + m; 
-        // Konverterer "HH:MM" til minutter
-    }
-    function formatTime(mins) {
-        return String(Math.floor(mins/60)).padStart(2,"0") + ":" + String(mins%60).padStart(2,"0"); 
-        // Formater minutter til "HH:MM"
-    }
-
-    function renderTimeButtons(selectedDate) {
-        const weekday = selectedDate.toLocaleDateString("en-US",{weekday:"long"}).toLowerCase(); 
-        const hours = openingHours[weekday]; 
-        if(!hours) return; 
-        // Hent åbningstider for valgt dag
-
-        timeContainer.innerHTML = ""; 
-        let start = convertToMinutes(hours.open); 
-        let end = convertToMinutes(hours.close); 
-        // Start- og sluttid i minutter
-
-        for(let t=start; t+60<=end; t+=60) { 
-            const btn = document.createElement("button"); 
-            btn.textContent = formatTime(t); 
-            btn.classList.add("time-btn"); 
-            btn.setAttribute("aria-pressed","false"); 
-
-            btn.addEventListener("click", () => {
-                document.querySelectorAll(".time-btn").forEach(b => b.classList.remove("selected")); 
-                document.querySelectorAll(".time-btn").forEach(b => b.setAttribute("aria-pressed","false")); 
-                btn.classList.add("selected"); 
-                btn.setAttribute("aria-pressed","true"); 
-                eventDateSpan.textContent = selectedDate.toLocaleDateString("da-DK") + " kl. " + btn.textContent; 
-                selectedDatetime.value = selectedDate.toISOString().split("T")[0] + " " + btn.textContent; 
-
-                // VIS KUN BORDVALG & SCROLL
-                tableSection.style.display = "block"; 
-                tableSection.scrollIntoView({ behavior: "smooth", block: "start" }); 
-            });
-
-            timeContainer.appendChild(btn); 
-        }
-    }
-
-    // --- TABLE SELECTION ---
-    const tables = document.querySelectorAll(".table"); 
-    const output = document.getElementById("chosen-table"); 
-    const chosenTableDisplay = document.getElementById("chosen-table-display"); 
-    const randomBtn = document.getElementById("random-table-btn"); 
-    // Hent bordknapper, output felter og random knap
-
-    // --- Manuel bordvalg ---
-    tables.forEach(table => {
-        table.addEventListener("click", () => {
-            tables.forEach(t => t.classList.remove("selected")); 
-            table.classList.add("selected"); 
-            output.textContent = table.dataset.table; 
-            chosenTableDisplay.textContent = table.dataset.table; 
-            formSection.style.display = "block"; 
-            formSection.scrollIntoView({ behavior: "smooth", block: "start" }); 
-        });
+  tableBtns.forEach(table => {
+    table.addEventListener("click", () => {
+      bordValgEl.textContent = table.dataset.table;
+      // Scroll til formular
+      formSection.scrollIntoView({ behavior: "smooth" });
     });
-
-    // --- Tilfældigt bordvalg ---
-    randomBtn.addEventListener("click", () => {
-        tables.forEach(t => t.classList.remove("selected")); 
-        const randomIndex = Math.floor(Math.random() * tables.length); 
-        const table = tables[randomIndex]; 
-        table.classList.add("selected"); 
-        output.textContent = table.dataset.table; 
-        chosenTableDisplay.textContent = table.dataset.table; 
-        formSection.style.display = "block"; 
-        formSection.scrollIntoView({ behavior: "smooth", block: "start" }); 
-    });
+  });
 
 });

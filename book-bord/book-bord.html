@@ -71,8 +71,8 @@
             <button class="guest-btn" data-guests="4">4</button>
             <button class="guest-btn" data-guests="5">5</button>
             <button class="guest-btn" data-guests="6">6</button>
-            <button class="guest-btn" data-guests="6">7</button> <!-- Bemærk: data-guests bør opdateres -->
-            <button class="guest-btn" data-guests="6">8</button> <!-- Bemærk: data-guests bør opdateres -->
+            <button class="guest-btn" data-guests="7">7</button> 
+            <button class="guest-btn" data-guests="8">8</button> 
         </div>
         <p>Bliver I over 8 personer, så send en mail til os!</p>
         <!-- Dekorativt billede -->
@@ -166,46 +166,46 @@
 
     <!-- SEKTION 4: Tilmeldingsformular -->
     <section id="form-section">
-        <h1>BOOKING</h1>
-        <div class="details">
-            <!-- Oversigt over valgte detaljer -->
+          <h1>BORD BOOKING</h1>
+      
+          <div class="details">
             <div>
-                <strong>ANTAL GÆSTER:</strong> <span id="guest-count">1</span>
+              <strong>ANTAL GÆSTER:</strong> <span id="guest-count">1</span> <!-- Opdateres dynamisk med JS når bruger klikker på antal-knapper -->
             </div>
-            <div>
-                <strong>DATO & TID:</strong> <span id="event-date"></span>
-            </div>
-            <div>
-                <strong>BORD NUMMER:</strong> <span id="chosen-table-display">ingen</span>
-            </div>
-        </div>
 
-        <!-- Formular til booking -->
-        <form id="signup-form">
-            <!-- Skjulte inputs til data -->
-            <input type="hidden" name="antal" id="antal-input">
-            <input type="hidden" id="selected-datetime" name="selected-datetime">
+            <div>
+              <strong>DATO & TID:</strong> <span id="time-date"></span> <!-- Hentes fra URL-parametre via JS -->
+            </div>
 
-            <!-- Navn input -->
+                  <div>
+              <strong>BORD:</strong> <span id="bord-valg"></span> <!-- Hentes fra URL-parametre via JS -->
+            </div>
+
+            <div>
+              <strong>STED:</strong> Emmys Kaffebar
+            </div>
+          </div>
+      
+          <!-- Formular til tilmelding -->
+          <form id="signup-form">
+            <input type="hidden" name="antal" id="antal-input"> <!-- Gemmer antal gæster valgt fra sektion 1 -->
+      
             <label>Navn:</label>
             <input type="text" pattern="[A-Za-zÆØÅæøå ]+" title="Navnet må kun indeholde bogstaver" required>
-
-            <!-- Email input -->
+      
             <label>Email:</label>
             <input type="email" required>
-
-            <!-- Telefon input -->
+      
             <label>Telefon:</label>
             <input type="tel" pattern="[0-9]*" required>
-
-            <!-- Postnummer input -->
+      
             <label>Post nr.:</label>
             <input type="text" id="zipcode" pattern="[0-9]*" required>
-
-            <!-- Submit knap -->
-            <button type="submit">BEKRÆFT BOOKING</button>
-        </form>
-    </section>
+      
+            <button type="submit">BEKRÆFT BOOKING</button> <!-- JS forhindrer reload og viser tak-modal -->
+          </form>
+      
+        </section>      
 </main>
 
 <!-- Tak modal, vises efter succesfuld booking -->

@@ -54,7 +54,70 @@
 
 <main>
 
+  <!-- NYT: layout der holder tekst/pil + bog -->
+  <div class="book-layout">
 
+    <!-- VENSTRE: tekst + pil (kun desktop) -->
+  <div class="book-intro desktop-only" id="bookIntro">
+  <p class="book-intro-text">
+    Tryk kappen på bogen og bladre dig igennem alt det, Emmy’s står for.
+  </p>
+  <img src="../photos/pil.png" alt="Pil" class="book-intro-arrow">
+</div>
+
+    <!-- HØJRE: hele bogen (samme som før) -->
+    <div class="book-wrapper">
+      <!-- Hele bogen -->
+      <div class="book-container" id="book">
+
+        <!-- Forside -->
+        <div class="book-cover front" id="frontCover">
+          <img src="../photos/Emmys.png" alt="Emmy's logo" class="cover-logo">
+          <button class="book-btn front-btn" id="openBookBtn">Åbn bogen</button>
+        </div>
+
+        <!-- Bagside -->
+        <div class="book-cover back" id="backCover">
+          <h1>Tak fordi du læste</h1>
+          <p>Vi glæder os til at byde dig velkommen hos Emmy’s Kaffebar.</p>
+          <button class="book-btn back-btn" id="backToFrontBtn">Tilbage til forside</button>
+        </div>
+
+        <!-- Indersider -->
+        <div class="book-inner" id="bookInner">
+          <!-- Venstre side -->
+          <div class="page" id="leftPage">
+            <div class="page-content">
+              <div class="page-label" id="leftLabel"></div>
+              <h2 class="page-title" id="leftTitle"></h2>
+              <p class="page-text" id="leftText"></p>
+            </div>
+
+            <!-- Foto-område (0–2 billeder) -->
+            <div class="page-photo-wrapper" id="leftPhotos"></div>
+          </div>
+
+          <!-- Højre side -->
+          <div class="page" id="rightPage">
+            <div class="page-content">
+              <div class="page-label" id="rightLabel"></div>
+              <h2 class="page-title" id="rightTitle"></h2>
+              <p class="page-text" id="rightText"></p>
+            </div>
+
+            <!-- Foto-område (0–2 billeder) -->
+            <div class="page-photo-wrapper" id="rightPhotos"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation under bogen -->
+      <div class="nav" id="nav">
+        <button id="prevBtn">← Forrige</button>
+        <button id="nextBtn">Næste →</button>
+      </div>
+    </div>
+  </div>
 
 </main>
 

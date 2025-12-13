@@ -177,6 +177,444 @@ html, body { /* Body-elementets styling starter */
     font-weight: 300; /* Let vægt */
 }
 
+
+/* =========================================================
+   Emmys– "om os"
+   ---------------------------------------------------------
+   Denne css styrer:
+•  Layout og stil = bog (forside, indersider, bagside)
+•  Intro-tekst + pil på desktop
+•  Bladre-animationer
+•  Mobilvisning (én side ad gangen)
+   Alt er holdt lavet så simpelt som muligt og opdelt i sektioner.
+   ========================================================= */
+
+/* Disse tre klasser deler samme håndskrift-font inde i bogen */
+.page-label,
+.page-text,
+.page-title {
+  font-family: "Shadows Into Light", cursive;
+  color: #341510; /* mørk brun */
+}
+
+
+/* ========== BOG-OMRÅDE ========== */
+
+/* Wrapper rundt om hele bogen, så den kan flyttes samlet */
+.book-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 150px; /* afstand ned fra toppen */
+}
+
+/* Selve "3D"-containeren for bogen */
+.book-container {
+  position: relative;
+  width: 420px;          /* lukket bog-bredde */
+  height: 520px;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  transform-origin: center;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  background: transparent;
+  overflow: hidden;
+  perspective: 1400px;   /* bruges til 3D-flip-animation */
+}
+
+/* Når bogen er åben på desktop (to sider ved siden af hinanden) */
+.book-container.open {
+  width: 840px;          /* 2 × 420px */
+  transform: translateY(-4px);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ========== FORSIDE & BAGSIDE ========== */
+
+/* Generel stil for både for- og bagside */
+.book-cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  border-radius: 12px;
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  color: #d96207;
+  text-align: center;
+  cursor: pointer;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.2s linear;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  z-index: 5; /* ligger over indersiderne */
+}
+
+/* Både forsiden og bagsiden bruger samme baggrundsbillede */
+.book-cover.front,
+.book-cover.back {
+  background-image: url("../photos/front.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Lille hover-effekt når man holder musen over omslag */
+.book-cover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.3);
+}
+
+.book-cover h1 {
+  font-size: 18px;
+  font-family: "Gotham light", sans-serif;
+}
+
+.book-cover p {
+  margin-top: 0.75rem;
+  font-size: 14px;
+  font-family: "Gotham light", sans-serif;
+}
+
+/* Logo på forsiden */
+.cover-logo {
+  width: 150px;
+  height: auto;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+
+/* ========== KNAPPER PÅ OMSLAG ========== */
+
+.book-btn {
+  padding: 0.5rem 1.2rem;
+  font-size: 14px;
+  border-radius: 10px;
+  color: #d96207;
+  background: transparent;
+  border: 1px solid #d96207;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.book-btn:hover {
+  background: #d96207;
+  color: #f3dfc5;
+  transform: translateY(-2px);
+}
+
+.front-btn,
+.back-btn {
+  margin-top: 0.5rem;
+}
+
+
+/* ========== INDERSIDER (SIDERNE I BOGEN) ========== */
+
+/* Grid med venstre + højre side (desktop) */
+.book-inner {
+  position: absolute;
+  inset: 0;
+  display: none;               /* vises først når bogen åbnes i JS */
+  grid-template-columns: 1fr 1fr;
+  background-image: url("../photos/papir.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+/* En enkelt side (venstre eller højre) */
+.page {
+  position: relative;
+  padding: 2rem 1.6rem;
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  background-image: url("../photos/papir.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.6rem;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* Højre side skal ikke have ekstra kant i midten */
+.page:last-child {
+  border-right: none;
+}
+
+/* Wrapper om tekstdelen på hver side */
+.page-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Lille label øverst (fx “Om os”) */
+.page-label {
+  font-size: 18px;
+  letter-spacing: 0.12em;
+  color: #4b3a29;
+}
+
+/* Overskrift på siden */
+.page-title {
+  font-size: 18px;
+  margin: 0 0 0.5rem;
+}
+
+/* Brødtekst på siden */
+.page-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #4b3a29;
+  max-width: 95%;
+  white-space: pre-line; /* respekterer \n fra JavaScript-teksten */
+}
+
+
+/* ========== FOTO + TAPE (NEDERST PÅ SIDEN) ========== */
+
+/* Hele foto-området nederst på en side */
+.page-photo-wrapper {
+  margin-top: auto;    /* skubber fotos ned mod bunden af siden */
+  width: 100%;
+}
+
+/* Række med ét eller flere fotos */
+.photo-row {
+  display: flex;
+  gap: 2.5rem;
+}
+
+/* Lille container rundt om hvert foto + tape */
+.photo-taped {
+  position: relative;
+  display: inline-block;
+}
+
+/* Selve fotoet – bredde kan overskrives via inline style fra JS */
+.photo-taped img {
+  width: 130px;          /* default på desktop */
+  max-width: 100%;
+  height: auto;
+  display: block;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+
+/* Neutral tape-boks – position og rotation sættes via inline style fra JS */
+.tape {
+  position: absolute;
+  width: 60px;
+  height: 20px;
+  background: rgba(236, 231, 217, 0.95);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+}
+
+
+/* ========== BLADRE-ANIMATIONER ========== */
+/* Klassen .flip-next / .flip-prev tilføjes midlertidigt via JS */
+
+.page.flip-next {
+  animation: flipNext 0.7s ease;
+  transform-origin: left center;
+}
+
+.page.flip-prev {
+  animation: flipPrev 0.7s ease;
+  transform-origin: right center;
+}
+
+/* Let skygge/gradient over siden (kan fjernes hvis du ikke bruger den) */
+.page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to left, rgba(0,0,0,0.15), rgba(0,0,0,0));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Fremad-bladring */
+@keyframes flipNext {
+  0%   { transform: perspective(1400px) rotateY(0deg); }
+  30%  { transform: perspective(1400px) rotateY(-45deg) skewY(3deg); }
+  65%  { transform: perspective(1400px) rotateY(-120deg) skewY(-2deg); }
+  100% { transform: perspective(1400px) rotateY(-180deg); }
+}
+
+/* Tilbage-bladring */
+@keyframes flipPrev {
+  0%   { transform: perspective(1400px) rotateY(0deg); }
+  30%  { transform: perspective(1400px) rotateY(45deg) skewY(-3deg); }
+  65%  { transform: perspective(1400px) rotateY(120deg) skewY(2deg); }
+  100% { transform: perspective(1400px) rotateY(180deg); }
+}
+
+
+/* ========== NAVIGATION UNDER BOGEN ========== */
+/* Knapperne “Forrige” / “Næste” nede under bogen */
+
+.nav {
+  display: none;  /* vises først når .visible sættes i JS */
+  gap: 50px;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.nav.visible {
+  display: flex;
+}
+
+.nav button {
+  padding: 0.5rem 0.9rem;
+  font-size: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #d96207;
+  background: transparent;
+  border: 1px solid #d96209;
+  display: inline-flex;
+  align-items: center;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.nav button:hover:not(:disabled) {
+  background: #d96207;
+  color: #f3dfc5;
+  transform: translateY(-1px);
+}
+
+
+/* ========== INTRO-TEKST + PIL (KUN DESKTOP) ========== */
+
+/* Brug .desktop-only på elementer, der aldrig må ses på mobil */
+.desktop-only {
+  display: block;
+}
+
+/* Tekst + pil til venstre for bogen (desktop-layout) */
+.book-intro {
+  position: absolute;
+  left: 4%;
+  top: 220px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: #4b3a29;
+  font-family: "Gotham light", sans-serif;
+}
+
+.book-intro-text {
+  font-size: 18px;
+  max-width: 260px;
+  line-height: 1.5;
+}
+
+.book-intro-arrow {
+  width: 450px;
+  height: auto;
+}
+
+
+/* ========== RESPONSIV: TABLET & MOBIL ========== */
+
+/* Skjul intro-tekst/pil allerede på lidt mindre skærme */
+@media (max-width: 1400px) {
+  .book-intro {
+    display: none;
+  }
+}
+
+/* Mobil-tilpasninger (bog fylder hele skærmen, én side ad gangen i JS) */
+@media (max-width: 800px) {
+
+  /* Skjul alle .desktop-only-elementer på mobil */
+  .desktop-only {
+    display: none !important;
+  }
+
+  /* Bogen rykkes lidt op så den ikke står for langt nede */
+  .book-wrapper {
+    margin-top: 80px;
+  }
+
+  /* Bogens bredde/højde på mobil */
+  .book-container {
+    width: 350px;
+    height: 500px;
+  }
+
+  .book-container.open {
+    width: 350px; /* stadig 1 side bred, selvom bogen er "open" i JS */
+  }
+
+  /* Indersider: kun én kolonne – JS vælger venstre/højre side */
+  .book-inner {
+    grid-template-columns: 1fr;
+  }
+
+  /* Mindre padding og tekststørrelser på selve siderne */
+  .page {
+    padding: 1.2rem 1.1rem;
+  }
+
+  .page-label {
+    font-size: 16px;
+  }
+
+  .page-title {
+    font-size: 16px;
+  }
+
+  .page-text {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  /* Fotos lidt tættere på teksten og lidt mindre */
+  .page-photo-wrapper {
+    margin-top: 0.3rem;
+  }
+
+  .photo-row {
+    justify-content: flex-start;
+    gap: 1.1rem;
+  }
+
+  .photo-row .photo-taped img {
+    width: 105px;
+    max-width: 40vw;
+  }
+
+  .tape {
+    width: 48px;
+    height: 18px;
+  }
+}
+
+
+
+
+
+
 /* Footer Container */
 footer {
     background-color: #341510;  /* Mørk baggrund */

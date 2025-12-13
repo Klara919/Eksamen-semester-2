@@ -175,117 +175,226 @@ html, body { /* Body-elementets styling starter */
 
 
 /*--- MAIN ___*/
+
+/* Event sektion */
 .container {
-    width: 100%;
-    margin: 0 auto;
-    max-width: 1200px;
-  }
-  
-  /* Sektion */
-  .events-section {
-    padding: 60px 0 100px;
-  }
-  
-  /* Pinboard baggrund */
-  .pinboard {
-    background-image: url("images/board.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    padding: 120px;
-    border-radius: 4px;
-  }
-  
-  /* Grid */
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-  }
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 60px 0 100px;
+}
+
+/* Desktop pinboard */
+.pinboard {
+  background-image: url("../photos/board.png"); /* vandret board til desktop */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 120px;
+  border-radius: 4px;
+}
+
+/* Grid til kortene */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+/* Kort styling */
+.card {
+  position: relative;
+  opacity: 0; 
+}
+
+/* Animation når kort "flyver ind" */
+.card.fly-in {
+  animation: flyLand 0.8s cubic-bezier(0.6, 0.05, 0.28, 0.91) forwards;
+  opacity: 1; 
+}
+
+/* Papirbaggrund på kort */
+.paper {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Tekst overlay på kort */
+.card-content {
+  position: absolute;
+  align-items: center;
+  text-align: center;
+  inset: 0;
+  padding: 40px 28px;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+/* Kortets titel */
+.card-title {
+  font-size: 18px;
+  margin: 10px 0 6px;
+  font-weight: 700;
+}
+
+/* Kortets dato */
+.card-date {
+  font-size: 14px;
+  margin: 0 0 20px;
+  color: #5b4a42;
+}
+
+.illustration {
+  flex: 1;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+/* CTA-knap */
+.cta {
+  pointer-events: auto;
+  margin-top: auto;
+  text-decoration: none;
+  border: 2px solid #D96209;
+  padding: 10px 14px;
+  border-radius: 10px;
+  color: #c86b2a;
+  font-weight: 600;
+  font-size: 13px;
+}
+.cta:hover {
+transform: scale(1.1);
+background: #D96209;
+color: white;
+}
 
 
-  
-  /* Kort */
-  .card {
-    position: relative;
-    display: flex;
+/* Animation for flyv-in effekt */
+@keyframes flyLand {
+  0% {
     opacity: 0;
-    transform: translateX(0) rotate(0deg) scale(0.9);
+    transform: var(--start-transform);
   }
-  
-  .card.fly-in {
-    animation: flyLand 0.8s cubic-bezier(0.6, 0.05, 0.28, 0.91) forwards;
+
+  60% {
     opacity: 1;
+    transform: translateX(10px) rotate(5deg) scale(1.05);
   }
 
-  .paper {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  
-  /* Teksten skal ligge ovenpå papiret */
-  .card-content {
-    position: absolute;
-    inset: 0;
-    padding: 40px 28px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    z-index: 2;
-    pointer-events: none;         /* Teksten må ikke blokere klik på CTA */
-  }
-  
-  .card-title,
-  .card-date,
-  .cta {
-    pointer-events: auto;         /* CTA skal kunne klikkes */
-  }
-  
-  /* Tekstindhold */
-  .card-title {
-    font-size: 18px;
-    margin: 10px 0 6px;
-    font-weight: 700;
-  }
-  
-  .card-date {
-    font-size: 14px;
-    margin: 0 0 20px;
-    color: #5b4a42;
-  }
-  
-  /* CTA-knap */
-  .cta {
-    margin-top: auto;
-    text-decoration: none;
-    border: 2px solid #e6a06a;
-    padding: 10px 14px;
-    border-radius: 10px;
-    color: #c86b2a;
-    font-weight: 600;
-    font-size: 13px;
+  80% {
+    transform: translateX(-5px) rotate(-2deg) scale(0.98);
   }
 
-
-
-
-  @keyframes flyLand {
-    0% {
-      opacity: 0;
-      transform: var(--start-transform);
-    }
-    60% {
-      opacity: 1;
-      transform: translateX(10px) rotate(5deg) scale(1.05);
-    }
-    80% {
-      transform: translateX(-5px) rotate(-2deg) scale(0.98);
-    }
-    100% {
-      transform: translateX(0) rotate(0deg) scale(1);
-    }
+  100% {
+    transform: translateX(0) rotate(0deg) scale(1);
   }
+}
+
+/* Modal overlay */
+.card-modal {
+  display: none; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5); /* slør baggrund */
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+/* Indhold på modal overlay*/
+.modal-content {
+  position: relative;
+  width: 70vw;
+  max-width: 900px;
+  min-height: 380px;
+  background-image: url("../photos/papirtekstur.png");
+  background-size: cover;
+  border-radius: 12px;
+  padding: 60px 80px;
+  display: flex;
+  gap: 60px;
+  animation: openModal 0.3s ease forwards;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+.modal-left {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-left img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.modal-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.modal-content h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.modal-content p {
+  font-size: 15px;
+  line-height: 1.6;
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.modal-content .cta {
+  border: 2px solid #d96209;
+  border-radius: 10px;
+  color: #d96209;
+  text-decoration: none;
+  margin-top: 10px;
+  width: fit-content;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content .cta:hover {
+  transform: scale(1.1);
+  background: #D96209;
+  color: white;
+}
+
+.close-btn {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  width: 20px;    
+  height: 20px;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.15s ease;
+  font-size: 28px;   /* tilføj – ellers er den usynlig */
+  color: #D96209;
+  font-weight: bold;
+}
+
+.close-btn:hover {
+  transform: scale(1.2);
+}
+
+/* Animation ved åbning af modal */
+@keyframes openModal {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
 
 
 
@@ -385,4 +494,55 @@ footer .copyrights {
         padding: 40px 20px; /* Indvendig afstand */
         margin-top: 10vh; /* Afstand */
     }
+    /* --- RESPONSIVE MAIN --- */
+  .pinboard {
+    background-image: url("../photos/board-mobil.png"); 
+    padding: 60px 30px;   
+    width: 90vw;
+    margin: 0 auto;
+  }
+
+  /* Grid med kort: én kolonne */
+  .cards-grid {
+    display: flex;
+    flex-direction: column;         /* Lodret stak */
+    width: 100%;
+    align-items: center;       
+  }
+
+  /* --- Kort --- */
+  .card {
+    width: 80%;                   
+    max-width: 300px;              
+    height: auto;
+  }
+
+  .cta {
+    padding: 8px 14px;
+  }
+
+  /* --- Modaler tilpasset kortenes størrelse --- */
+  .card-modal {
+    padding-top: 30px;  
+  }
+
+  .modal-content {
+    flex-direction: column;
+    width: 70vw;
+    max-width: 350px;
+    min-height: auto;
+  }
+
+  .modal-right h2 {
+    font-size: 18px;
+  }
+
+  .modal-right p {
+    font-size: 14px;
+  }
+
+  .modal-content .cta {
+    padding: 8px 14px;
+    text-align: center;
+  }
 }

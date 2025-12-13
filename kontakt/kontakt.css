@@ -174,6 +174,249 @@ html, body { /* Body-elementets styling starter */
 }
 
 
+h1, h3, label{
+    font-family: "Gotham"; /* Navn */
+    src: url("../fonts/gotham_bold-webfont.woff") format("woff"); /* Filsti til bold version */
+    font-weight: 700; /* Bold vægt */
+    font-style: normal; /* Normal stil */
+}
+p{
+    font-family: "Gotham light"; /* Navngiver fonten */
+    src:url("../fonts/gotham_light-webfont.woff") format("woff"); /* Angiver fontfil */
+    font-weight: 300; /* Sætter vægt */
+    font-style: normal; /* Normal stil */
+}
+
+
+
+/*--kontakt formular--*/
+.mailbox{
+    display: flex;
+    flex-direction: column; /*--flex direction colum for at tvinge alt indholdet til at stå på en linje--*/
+    width: 120vh; /*--brug af vh for at scale på viewport height, og nemmmere scale i responsiv--*/
+    height: auto;
+    margin-top: 80px;/*-- padding og margin for at lave mellemrum mellem indholdet.--*/
+    padding-bottom: 80px;
+    justify-self: center;/*--brug af både justify self og align items, for at stabilisere indholdet.--*/
+    align-items: center;  
+}
+/*--overskrift og brødtekst til sektionen--*/
+#mailboxtekst{
+    display: flex;
+    flex-direction: column; /*--flex direction collum, for at fasteholde retningen--*/
+    text-align: center;
+    padding-bottom: 50px;
+}
+/*--bagrunden--*/
+.background{
+    display:flex;
+    position: absolute;
+    z-index: -1;/*--brug af z-index for at lægge lagende ovenpå hinaden på 3 D aksen--*/
+}
+/*--formularen--*/
+#formular{
+    display: flex; /*--brug af display flex, for at kunne frit bevæge indholdet med position--*/
+    position: absolute; /*--brug af position absolut, for at kunne rykke den frit, med de mål der gives--*/
+    margin-top: 240px; /*-- brug af margin for at skubbe den ned--*/
+    z-index: 0;
+    font-family: 'Gotham light', sans-serif;
+}
+/*--selve formularen--*/
+.sendbox {
+    width: 95%;
+    padding: 50px;
+    box-sizing: border-box;
+    color: #341510;   
+    position: absolute;
+}
+.sendbox input, .sendbox textarea {
+    width: 100%;
+    padding: 8px;  
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #E9E9E9;
+}
+.sendbox label {
+    font-weight: 700;
+}
+.sendbox textarea {
+    height: 100px;
+    resize: vertical;
+}
+/*--forgrunden--*/
+.envelope{
+    display: flex;
+    position: absolute;
+    margin-top:500px;
+    z-index: 1;
+}
+/*--event pop up--*/
+#popup{
+    z-index: -10;
+    width: 430px;
+    height: 135px;
+    background-color: #1b1b1b;
+    margin: auto;
+    display: flex;
+    position: absolute;
+    border: none;
+    border-radius: 10px;
+    opacity: 0.0;
+    transition: opacity 0.5s ease-in;
+}
+#popup p{
+    color: white;
+    text-align: center;
+    box-sizing: border-box;
+    width: 100%;
+    margin: auto;
+}
+#CloseB{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    border: none;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    background-color: transparent;
+}
+#CloseB img{
+    position: relative;
+    height: 100%;
+    width: auto;
+}
+/*--knap der udløser pop-up--*/
+
+#button{
+    display: flex;
+    position: absolute;
+    flex-wrap: wrap;
+    place-content: center;
+    max-height: 90px;
+    width: 90px;
+    block-size: 20vh;
+    border-radius: 50px 50px 50px 50px; /*--border radius for at gøre den rund--*/
+    margin-top: 750px;
+    background-color: #D96207; /*--knap farve--*/
+    color: #F9E9D2; /*--font farve--*/
+    z-index: 2;
+    border: none;
+}
+
+button :hover{
+    transform: scale(1.5);
+}
+
+
+/*--kassen der indeholder alt content og regler--*/
+.some{ /*--parent. en "kasse" der har faste regler for indholdet.--*/
+    margin-top: 80px; /*--margin for at skabe mellemrum i indholdet.--*/   
+    padding-bottom: 80px;
+    max-width: auto;
+    max-height: auto;
+}
+/*--overskrift og brødtekst til sektionen--*/
+#sometekst{ /*--child. bestemmer stilen for teksten.--*/
+    display: flex;
+    flex-direction: column; /*--fæex direction collum, for at fasteholde retningen--*/
+    text-align: center;
+    
+}
+/*--kasse der indeholder ikonerne--*/
+.ikoner{
+    display: flex;
+    justify-content: center;
+    flex-direction: row; /*--direction row, for at ændre html's naturelige opsætning--*/
+    scale: calc(0.8);/*--scale, for at scalere den ned--*/
+}
+
+.ikoner :hover{
+    transition: 200ms;
+    transform: scale(0.9);
+}
+#instagram{
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.facebok{
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#tiktok{
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px; 
+}
+
+/*--kasse der indeholder embeded kode til maps*/
+
+.lokation{
+    display: flex;
+    flex-direction: column;
+    width: 120vh;
+    height: auto;
+    margin-top: 80px;
+    padding-bottom: 80px;
+    justify-self: center;
+    align-items: center; 
+}
+
+#pin{
+    display: flex;
+    position: absolute;
+    justify-self: center;
+    padding-right: 130px;
+    margin-top: 145px;
+    z-index: 1;
+}
+#pin :hover{
+    transition: 200ms;
+    transform: scale(0.9);
+}
+.maps{
+    scale: calc(0.7);
+
+}
+
+
+
+@media screen and (max-width: 500px){
+
+    main{
+        overflow: clip;
+    }
+
+    .mailbox{
+        scale: calc(0.5);
+        margin: -100px;
+    }
+    .formular{
+        display: flex;
+    }
+    
+
+    .some{
+        scale: calc(0.5);
+        margin: -300px;
+    }
+
+    .lokation{
+        scale: calc(0.5);
+        margin-bottom: -100px;
+    }
+}
+
+
+
+
+
+
 
 /* --- Footer Container ---*/
 footer {

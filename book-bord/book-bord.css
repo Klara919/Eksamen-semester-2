@@ -246,6 +246,14 @@ section {
     transform: scale(1.2); /* Forstørres */
 }
 
+.calendar-days button.disabled {
+  opacity: 0.4;      /* Gør knappen “sløret” */
+  cursor: not-allowed; /* Vis klik-ikke cursor */
+  background-color: #F9E9D2; /* Lys grå baggrund */
+  color: #D96209;       /* Mørk grå tekst */
+  opacity: 0.5;      /* Gør knappen “sløret” */
+}
+
 .selected-date {
     font-weight: bold; /* Fed tekst */
     font-size: 20px; /* Størrelse */
@@ -270,9 +278,9 @@ section {
     width: 5vw; /* Knappens bredde */
     height: 9vh; /* Knappens højde */
     border-radius: 50%; /* Rund knap */
-    border: none; /* Ingen kant */
-    background: #D96209; /* Orange baggrund */
-    color: white; /* Hvid tekst */
+    background: #F9E9D2; /* Orange baggrund */
+    color: #D96209; /* Hvid tekst */
+    border:2px solid #D96209; /* Orange kant */
     font-size: 18px; /* Tekststørrelse */
     cursor: pointer; /* Klikbar */
     transition: 0.2s; /* Smooth hover */
@@ -314,11 +322,11 @@ section {
 .time-btn {
     width: 5vw; /* Bredde som 5% af viewport width */
     height: 9vh; /* Højde som 9% af viewport height */
-    background: #D96209; /* Orange baggrund */
+    background: #F9E9D2; /* Orange baggrund */
     border-radius: 50px; /* Rundede ender */
-    border: none; /* Ingen kantlinje */
+    border:2px solid #D96209; /* Orange kant */
     font-size: 18px; /* Tekststørrelse */
-    color: white; /* Hvid tekst */
+    color: #d96209; /* Hvid tekst */
     cursor: pointer; /* Cursor ændres til pointer ved hover */
     transition: 0.2s; /* Glidende transition ved hover eller state ændring */
 }
@@ -328,10 +336,7 @@ section {
     background: #D96209; /* Farven forbliver den samme */
 }
 
-.time-btn.selected {
-    background: #D96209; /* Orange når valgt */
-    transform: scale(1.1); /* Lidt større når valgt */
-}
+
 
 /* Dekorativt billede i tidssektionen */
 #time-section img {
@@ -393,50 +398,63 @@ section {
     border-radius: 6px; /* Lidt rundede hjørner */
 }
 
-/* --- FORMULAR SEKTION --- */
-#form-section {
-    padding-top: 5vh; /* Top padding */
-    width: 100vw; /* Fylder hele viewport-bredden */
-}
+/* Formular sektion */
+  #form-section {
+    padding-top: 50px;
+    padding-bottom: 100px;
+  }
 
-.details {
-    display: grid; /* Grid layout */
-    grid-template-columns: 1fr 1fr; /* To kolonner med lige bredde */
-    max-width: 40vw; /* Maksimal bredde */
-    margin: auto; /* Centrerer container */
-    text-align: left; /* Venstrestiller tekst */
-    gap: 5vh; /* Lodret mellemrum mellem detaljer */
+#form-section h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
 }
+  
+  /* Tekst deltajer */
+  .details {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* To kolonner til detaljer */
+    padding-top: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+    gap: 40px;
+  }
+  
+  /* Formularen */
+  form {
+    margin-top: 40px;
+    max-width: 600px;
+    margin: 0 auto;        
+    display: grid;
+    gap: 20px;
+    text-align: left;
+    padding-top: 50px;
+  }
+  
+  /* Oplysningsfelter */
+  input, button {
+    padding: 12px;
+    border: 2px solid #D96209;
+    border-radius: 8px;
+  }
+  
+  button[type="submit"] {
+    background: transparent;
+    color: #D96209;
+    cursor: pointer;
+    width: fit-content;
+    justify-self: center;
+    border: 2px solid #D96209;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
 
-#form-section form {
-    display: block; /* Standard blok-layout */
-    width: 100%; /* Fylder hele containeren */
-    max-width: 650px; /* Maksimal bredde */
-    margin: 40px auto 0 auto; /* Centrerer formular med top-margin */
+button[type="submit"]:hover {
+    transform: scale(1.1);
+    background: #D96209;
+    color: white;
 }
-
-#form-section form input,
-#form-section form button[type="submit"] {
-    width: 100%; /* Fylder hele formularbredden */
-    max-width: none; /* Ingen max-width begrænsning */
-    box-sizing: border-box; /* Inkluderer padding og border i bredden */
-}
-
-input, button {
-    padding: 12px; /* Indvendig afstand */
-    border: 2px solid #D96209; /* Orange kant */
-    border-radius: 8px; /* Afrundede hjørner */
-}
-
-input {
-    width: 800px; /* Fast bredde for inputfelt */
-}
-
-button[type="submit"] {
-    background: white; /* Hvid baggrund */
-    color: #D96209; /* Orange tekst */
-    cursor: pointer; /* Pointer cursor */
-}
+  
 
 /* --- TAK FOR TILMELDING MODAL --- */
 #thankyou-modal {
