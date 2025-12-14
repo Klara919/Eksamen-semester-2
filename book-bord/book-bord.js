@@ -143,4 +143,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // --- TILFÆLDIGT BORD ---
+const randomTableBtn = document.getElementById("random-table-btn");
+
+randomTableBtn.addEventListener("click", () => {
+  // Vælg et tilfældigt bord fra listen af borde
+  const randomIndex = Math.floor(Math.random() * tableBtns.length);
+  const randomTable = tableBtns[randomIndex];
+
+  // Marker bordet som valgt
+  bordValgEl.textContent = randomTable.dataset.table;
+
+  // Scroll til formularen
+  formSection.scrollIntoView({ behavior: "smooth" });
+
+  // (Valgfrit) Tilføj en visuel markering på bordet
+  tableBtns.forEach(t => t.classList.remove("selected"));
+  randomTable.classList.add("selected");
+});
+
+
 });

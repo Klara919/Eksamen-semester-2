@@ -9,98 +9,114 @@
 </head>
 <body>
 
+  <!-- HERO SECTION -->
+  <header>
+      <video class="hero-video" autoplay muted loop playsinline>
+          <source src="photos/hero.mp4" type="video/mp4">
+          Din browser understøtter ikke video.
+      </video>
 
+      <div class="navbar-wrapper">
+          <div class="logo-container">
+              <a href="index.html">
+                  <img src="photos/Emmys.svg" alt="Logo" class="logo">
+              </a>
+          </div>
 
-<header>
-    <video class="hero-video" autoplay muted loop playsinline>
-    <source src="photos/hero.mp4" type="video/mp4"> Din browser understøtter ikke video.
-    </video>
+          <nav class="nav">
+              <a href="menu/menu.html">MENU</a>
+              <a href="book-bord/book-bord.html">BOOK BORD</a>
+              <a href="events/events.html">EVENTS</a>
+              <a href="om-os/om-os.html">OM OS</a>
+              <a href="kontakt/kontakt.html">KONTAKT</a>
+          </nav>
+      </div>
 
+      <div class="dropdown">
+          <input type="checkbox" id="burger-toggle" />
+          <label for="burger-toggle" class="burger-icon">
+              <img src="photos/brun-burgermenu.svg" alt="Burgermenu" />
+          </label>
 
-        <nav class="nav">
-                <a href="menu/menu.html">MENU</a>
-                <a href="book-bord/book-bord.html">BOOK BORD</a>
-                <a href="events/events.html">EVENTS</a>
-                <a href="om-os/om-os.html">OM OS</a>
-                <a href="kontakt/kontakt.html">KONTAKT</a>
-        </nav>
+          <div class="dropdown-content">
+              <label for="burger-toggle" class="close-dropdown">×</label>
+              <a href="index.html" class="logo-link">
+                  <img src="photos/Emmys.svg" alt="Logo" class="logo">
+              </a>
+              <a href="menu/menu.html">MENU</a>
+              <a href="book-bord/book-bord.html">BOOK BORD</a>
+              <a href="events/events.html">EVENTS</a>
+              <a href="om-os/om-os.html">OM OS</a>
+              <a href="kontakt/kontakt.html">KONTAKT</a>
+          </div>
+      </div>
+  </header>
 
-        <div class="dropdown">
-    <input type="checkbox" id="burger-toggle" />
-
-    <!-- Burger-menu ikon -->
-        <label for="burger-toggle" class="burger-icon">
-            <img src="./photos/burgermenu.svg" alt="Burgermenu" />
-        </label>
-
-    <!-- Dropdown-menu -->
-            <div class="dropdown-content">
-
-            <!-- Lukke-kryds -->
-                <label for="burger-toggle" class="close-dropdown">×</label>
-
-            <!-- Logo -->
-                <a href="index.html" class="logo-link">
-                    <img src="./photos/Emmys.svg" alt="Logo" class="logo">
-                </a>
-
-            <!-- Menu-links -->
-                <a href="menu/menu.html">MENU</a>
-                <a href="book-bord/book-bord.html">BOOK BORD</a>
-                <a href="events/events.html">EVENTS</a>
-                <a href="om-os/om-os.html">OM OS</a>
-                <a href="kontakt/kontakt.html">KONTAKT</a>
-         </div>
-</div>
-         <!-- Hero sektion -->
-   <div class="logo-container">
-        <img src="photos/Emmys.png" alt="logo" class="hero-logo">
-    </div>
-
-
-</header>
-
-
-
-<main>
-<!-- MAIN INDHOLD -->
-<main class="main-content">
-    
+  <!-- MARQUEE UNDER HERO -->
 <div class="marquee-wrapper">
-  <svg viewBox="0 0 1440 442" class="marquee-svg">
-    <defs>
-      <!-- LIGE LINJE -->
-      <path id="marqueePath" d="M0 150 L1440 150" />
-    </defs>
-
-    <use href="#marqueePath" class="text-bg" />
-
-    <text class="marquee-text" dominant-baseline="middle">
-      <textPath id="marqueeText" href="#marqueePath" startOffset="0%" dy="50">
-        Nyd en kop kaffe i hyggelige omgivelser • Nyd en kop kaffe i hyggelige omgivelser • Nyd en kop kaffe i hyggelige omgivelser • Nyd en kop kaffe i hyggelige omgivelser •
-      </textPath>
-    </text>
-  </svg>
-</div>
-
-
-<!-- sektioner -->
-<div class="menu-sektion">
-
-  <div class="menu-billeder">
-    <img src="photos/kaffe.png" alt="Avokadomad">
-    <img src="photos/Tapas.png" alt="Lidt af det hele">
-    <img src="photos/Vin.png" alt="Jordbærgrød">
+  <div class="marquee-track" id="marqueeTrack">
+    <span>
+      Nyd en kop kaffe i hyggelige omgivelser • Nyd en kop kaffe i hyggelige omgivelser • Nyd en kop kaffe i hyggelige omgivelser • Nyd en kop kaffe i hyggelige omgivelser • Nyd en kop kaffe i hyggelige omgivelser • Nyd en kop kaffe i hyggelige omgivelser •
+    </span>
   </div>
-
-  <a href="/menu/menu.html" class="menu-knap">Se hele menuen</a>
 </div>
 
 
 
-</main>
-    
-<!-- footer -->
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+      <section class="split-section1">
+          <div class="split left">
+              <img src="photos/kaffe.png" alt="kaffe">
+          </div>
+          <div class="split right">
+            <h2>Velkommen til Emmys Kaffebar</h2>
+              <p>Hos os er hver kop kaffe og hver bid mad <br>
+                lavet med kærlighed – helt fra bunden. <br>
+                Vi går op i det er hjemmelavet, gode råvarer og hyggelige stunder. <br>
+                Tag et øjeblik, slap af, og nyd smagen af det hjemmelavede.</p>
+
+                <a href="menu/menu.html">MENU</a>
+          </div>
+      </section>
+
+      <section class="split-section2">
+          <div class="split left">
+            <h2>Deltag i vores hyggelige event & workshops!</h2>
+              <p>Kom og vær med til kreative og smagfulde oplevelser, <br>
+                     hvor du kan lære nye færdigheder, møde andre og have det sjovt. <br> 
+                     Tilmeld dig vores workshops og events i dag!</p>
+
+                     <a href="events/events.html">EVENT</a>
+          </div>
+          <div class="split right">
+              <img src="photos/papirognaal.png" alt="kaffe">
+          </div>
+      </section>
+
+      <section class="split-section3">
+          <div class="split left">
+              <img src="photos/Emmys.png" alt="kaffe">
+          </div>
+          <div class="split right">
+              <h2>Om Emmys Kaffebar</h2>
+              <p>Hos Emmys Kaffebar skaber vi et varmt og indbydende sted, <br>
+                hvor kaffe, snacks og gode stunder går hånd i hånd. <br>
+                Vi elsker at byde vores gæster velkommen, <br>
+                uanset om det er til en hurtig kop kaffe eller <br>
+                en afslappet stund med venner og familie.</p>
+
+                <a href="om-os/om-os.html">OM OS</a>
+          </div>
+      </section>
+
+  </main>
+
+
+
+
 <footer>
     <div class="footer-sections">
         <div class="adresse">

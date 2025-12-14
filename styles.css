@@ -1,12 +1,12 @@
-/* --- BODY & FONT --- */ 
-html, body { /* Body element starter */
-    background-color: #F9E9D2;
-    font-family: 'Gotham light', sans-serif;
+/* BODY */
+html, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-} /* Body element slut */
-
+    font-family: 'Gotham light', sans-serif;
+    background-color: #F9E9D2;
+    overflow-x: hidden; /* Fjerner horisontal scroll */
+}
 
 /* Import af custom font "Gotham light" */
 @font-face { /* Definerer brugerdefineret font */
@@ -24,86 +24,90 @@ html, body { /* Body element starter */
     font-style: normal; /* Normal stil */
 } /* Slut font-face */
 
-
-/* --- HERO VIDEO SOM BAGGRUND --- */
-
 header {
     position: relative;
     width: 100%;
-    height: 100vh; /* Video fylder hele skærmen */
+    height: 100vh; /* fylder hele skærmen */
     overflow: hidden;
 }
 
-/* Video skal ligge bag alt andet */
 .hero-video {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     object-fit: cover;
     transform: translate(-50%, -50%);
-    z-index: 0; /* bag alt andet */
+    z-index: 0;
 }
 
-/* Alt indhold ovenpå videoen */
-.nav,
-.dropdown,
-.logo-container {
-    position: relative;
-    z-index: 10; /* foran videoen */
+.navbar-wrapper {
+    position: sticky;  /* sticky navbar */
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 2vh 0;
+    background-color: rgba(249, 233, 210, 0.95); /* semi-transparent baggrund, så video kan skimtes */
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+    transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-/* --- NAVIGATION --- */
-header { /* Header container */
-    position: relative; /* Relativ placering for dropdown/burger */
+.navbar-wrapper.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
-.nav { /* Navigation container */
-    display: flex; /* Flexbox layout */
-    justify-content: center; /* Centrerer alle knapper horisontalt */
-    gap: 5vw; /* Afstand mellem knapper */
-    width: 100%; /* Fylder hele bredden */
-    padding: 4vw 0; /* Lodret padding for navigation */
-}
 
-.nav a { /* Navigation links */
-    border: 1px solid #D96209; /* Orange kant */
-    color: #D96209; /* Orange tekst */
-    text-decoration: none; /* Ingen understregning */
-    padding: 1vw 0; /* Lodret padding */
-    font-size: 14px; /* Tekststørrelse */
-    border-radius: 10px; /* Rundede hjørner */
-    transition: all 0.3s ease; /* Smooth transition */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Let skygge */
-    width: 150px; /* Fast bredde på alle knapper */
-    text-align: center; /* Centrerer teksten */
-}
 
-.nav a:hover { /* Hover-effekt for navigation links */
-    background-color: #D96209; /* Baggrund bliver orange */
-    color: white; /* Tekst bliver hvid */
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3); /* Større skygge */
-    transform: translateY(-3px); /* Lidt løft */
-}
-
-/* Logo */
-.logo-container { /* Container for logo */
-    display: flex; /* Flexbox layout */
-    position: relative;
+.logo-container { /* Container til logo */
+    display: flex; /* Flexbox */
     justify-content: center; /* Centrerer horisontalt */
     align-items: center; /* Centrerer vertikalt */
-        z-index: 10; /* Ligger foran videoen */
+    margin-top: -1vh; /* Justerer placering */
 }
 
+.logo { /* Logo billede */
+    max-width: 15vw; /* Maksimal bredde */
+}
 
+/* NAV LINKS */
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+}
 
-.hero-logo {
-    max-width: 60vw;
-    display: block;
-    margin: 5vh auto;
-    z-index: 10;
-    position: relative;
+.nav a {
+    border: 1px solid #D96209;
+    color: #D96209;
+    text-decoration: none;
+    padding: 10px 0;
+    font-size: 14px;
+    margin-top: -2vh;
+    border-radius: 10px;
+    width: 120px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.nav a:hover {
+    background-color: #D96209;
+    color: white;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transform: translateY(-3px);
+}
+
+/* DROPDOWN / BURGER MENU (kort) */
+.dropdown {
+    display: none;
 }
 
 /* --- BURGER MENU --- */
@@ -122,7 +126,7 @@ header { /* Header container */
     justify-content: center; /* Horisontal centrering */
     padding: 4vw; /* Indvendig afstand */
     z-index: 1001; /* Ligger over dropdown */
-    margin-top: 5vh; /* Luft fra toppen */
+    margin-top: 0vh; /* Luft fra toppen */
 }
 
 /* --- Kryds (luk menu) --- */
@@ -158,7 +162,7 @@ header { /* Header container */
 /* Logo margin-top justering */
 .dropdown-content .logo { 
     margin-top: -15vh; /* Løftes op i dropdown */
-    max-width: 65vw; /* Maksimal størrelse på mobil */
+    max-width: 50vw; /* Maksimal størrelse på mobil */
 }
 
 /* Skjul checkbox */
@@ -205,154 +209,188 @@ header { /* Header container */
     font-weight: 300; /* Let vægt */
 }
 
-
-
-.text-bg {
-  fill: none;
-  stroke: #341510;
-  stroke-width: 10vw;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.marquee-wrapper {
+  width: 100%;               /* Fylder hele bredden af viewporten */
+  overflow: hidden;          /* Skjuler indhold, der bevæger sig uden for containeren */
+  background-color: #341510; /* Baggrundsfarve for marquee-området */
+  padding: 4vh 0;            /* Lodret luft over og under indholdet */
 }
 
-.marquee-text {
-  font-size: 30px;
-  font-weight: 700;
-  fill: #f3e1ce;
-  white-space: nowrap;
+.marquee-track {
+  display: flex;             /* Bruger flexbox til at placere indhold vandret */
+  flex-wrap: nowrap;         /* Forhindrer elementerne i at bryde til ny linje */
+  font-family: "Gotham light", sans-serif; /* Angiver skrifttypen */
+  font-weight: normal;       /* Normal vægt, da fonten allerede er light */
+  font-size: 20px;           /* Tekstens størrelse */
+  color: #F9E9D2;            /* Tekstens farve */
+  white-space: nowrap;       /* Forhindrer linjeskift i teksten */
+  transform: translateX(0);  /* Startposition for vandret bevægelse */
 }
 
 
-.menu-sektion {
+/*MAIN*/
+
+/*split sektion 1*/
+.split-section1 {
+  display: flex;
+  width: 100%;
+  min-height: 70vh;
+background-color: #F9E9D2;
+margin-top: 2vh;
+}
+
+.split-section1 .split {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.split-section1 .split.left {
     display: flex;
-    flex-direction: column;
-    justify-content: center; /* lodret centreret */
-    align-items: center;     /* vandret centreret */
-    min-height: 80vh;        /* højde på sektionen */
-    text-align: center;
-    margin-top: -10vh;
+    justify-content: center; /* centrerer vandret */
+    align-items: center;     /* centrerer lodret */
+    height: 100%;            /* sørg for at div'en har højde */
 }
 
-.menu-sektion h1 {
-    margin: 0 auto 10vh auto; /* top 0, højre auto, bund 10vh, venstre auto */
-    font-size: 2.5rem;
-    color: #333;
-    display: block; /* h1 er allerede block som standard */
-    text-align: center; /* sørger for tekst inde i h1 er centreret, hvis den fler-linjers */
+.split-section1 .split.left img {
+    max-width: 50vh;
+    margin-top: 10vh;
 }
-  .menu-billeder {
-    display: flex;
-    justify-content: center;
-    gap: 10vw;
-    flex-wrap: wrap;
-    margin-bottom: 30px;
-  }
 
-  .menu-billeder img {
-    width: 20vw;
-    height: 30vh;
-    cursor: pointer;
-    transition: transform 0.4s ease; /* glidende overgang */
-  }
+.split-section1 .split.right {
+  color: #341510;
+  font-size: 20px;
+}
 
-  .menu-billeder img:hover {
-    transform: scale(1.05);
-  }
-
-  .menu-knap{
-    display: inline-block;
-    padding: 15px 30px;
-    background-color: #D96209;
-    color: white;
-    font-size: 1.2rem;
-    text-decoration: none;
-    border-radius: 10px;
-    transition: background-color 0.3s, transform 0.3s;
+.split-section1 .split.right a {
+  color: #D96209;
+  text-decoration: none;
+  border: #D96209 2px solid;
+  border-radius: 10px;
+  padding: 10px 20px;
+  width: fit-content;
     margin-top: 4vh;
-  }
+}
 
-  .menu-knap:hover {
-    background-color: #341510;
-    transform: scale(1.05);
-  }
+.split-section1 .split.right a:hover {
+  background-color: #D96209;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+/*split sektion 2*/
+.split-section2{
+  display: flex;
+  width: 100%;
+  min-height: 70vh;
+background-color: #341510;
+margin-top: 2vh;
+}
+
+.split-section2 .split {
+  flex: 1;
+  padding: 4vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 4vw;
+}
+
+.split-section2 .split.left{
+  color: #F9E9D2;
+    font-size: 20px;
+}
+
+.split-section2 .split.left a {
+  color: #D96209;
+  text-decoration: none;
+  border: #D96209 2px solid;
+  border-radius: 10px;
+  padding: 10px 20px;
+  width: fit-content;
+ margin-top: 4vh;
+}
+
+.split-section2 .split.left a:hover {
+  background-color: #D96209;
+  color: white;
+  transition: all 0.3s ease;
+}
 
 
-.event-sektion {
+.split-section2 .split.right {
     display: flex;
-    flex-direction: column;
-    justify-content: center; /* lodret centreret */
-    align-items: center;     /* vandret centreret */
-    min-height: 80vh;        /* højde på sektionen */
-    text-align: center;
+    justify-content: center; /* centrerer vandret */
+    align-items: center;     /* centrerer lodret */
+    height: 100%;            /* sørg for at div'en har højde */
 }
 
-.event-sektion h1 {
-    margin: 0 auto 10vh auto; /* top 0, højre auto, bund 10vh, venstre auto */
-    font-size: 2.5rem;
-    color: #333;
-    display: block; /* h1 er allerede block som standard */
-    text-align: center; /* sørger for tekst inde i h1 er centreret, hvis den fler-linjers */
+.split-section2 .split.right img {
+    width: 100%;       /* fylder hele højden af containeren */
+    max-width: 25vw;  /* maks bredde, kan justeres efter behov */
+    height: auto;      /* bevarer proportioner */
+    display: block;
+    margin: 0 auto;    /* centrerer billedet i containeren */
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    margin-right: 20vh;
 }
 
-.event-knap {
-        display: inline-block;
-        padding: 15px 30px;
-        background-color: #D96209;
-        color: white;
-        font-size: 1.2rem;
-        text-decoration: none;
-        border-radius: 10px;
-        transition: background-color 0.3s, transform 0.3s;
-        margin-top: 4vh;
-      }
-    
-      .event-knap:hover {
-        background-color: #341510;
-        transform: scale(1.05);
-      }
+/*split sektion 3*/
 
+.split-section3 {
+  display: flex;
+  width: 100%;
+  min-height: 70vh;
+background-color: #F9E9D2;
+margin-top: 2vh;
+}
 
+.split-section3 .split {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-.omos-sektion {
+.split-section3 .split.left {
     display: flex;
-    flex-direction: column;
-    justify-content: center; /* lodret centreret */
-    align-items: center;     /* vandret centreret */
-    min-height: 80vh;        /* højde på sektionen */
-    text-align: center;
+    justify-content: center; /* centrerer vandret */
+    align-items: center;     /* centrerer lodret */
+    height: 100%;            /* sørg for at div'en har højde */
 }
 
-.omos-sektion h1 {
-    margin: 0 auto 10vh auto; /* top 0, højre auto, bund 10vh, venstre auto */
-    font-size: 2.5rem;
-    color: #333;
-    display: block; /* h1 er allerede block som standard */
-    text-align: center; /* sørger for tekst inde i h1 er centreret, hvis den fler-linjers */
+.split-section3 .split.left img {
+    max-width: 50vh;
+    margin-top: 20vh;
 }
 
-.omos-knap {
-        display: inline-block;
-        padding: 15px 30px;
-        background-color: #D96209;
-        color: white;
-        font-size: 1.2rem;
-        text-decoration: none;
-        border-radius: 10px;
-        transition: background-color 0.3s, transform 0.3s;
-        margin-top: 4vh;
-      }
-    
-      .omos-knap:hover {
-        background-color: #341510;
-        transform: scale(1.05);
-      }
+.split-section3 .split.right {
+  color: #341510;
+  font-size: 20px;
+  margin-top: 5vh;
+}
 
-  @media (max-width: 800px) {
-    .menu-billeder img {
-      width: 150px;
-      height: 150px;
-    }
-  }
+.split-section3 .split.right a {
+  color: #D96209;
+  text-decoration: none;
+  border: #D96209 2px solid;
+  border-radius: 10px;
+  padding: 10px 20px;
+  width: fit-content;
+    margin-top: 4vh;
+}
+
+.split-section3 .split.right a:hover {
+  background-color: #D96209;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+
 
 /* Footer Container */
 footer {
@@ -409,6 +447,8 @@ footer .sociale-medier img:hover {
     transform: scale(1.1);  /* Forstørres ved hover */
 }
 
+
+
 /* Copyright */
 footer .copyrights {
     margin-top: 4vh; /* Afstand fra sektioner */
@@ -417,42 +457,113 @@ footer .copyrights {
     color: #F9E9D2; /* Lys farve */
 }
 
-/* --- RESPONSIVE --- */
-@media (max-width: 600px) { /* Mobilvisning */
+
+
+@media (max-width: 600px) { /* Mobil */
+    /* Skjul desktop-menu og vis burger-menu */
     .nav {
-        display: none; /* Skjul desktop menu */
+        display: none;
     }
 
     .dropdown {
-        display: block; /* Vis burger-menu */
+        display: block;
     }
 
+    /* Fjern navbar baggrund på mobil */
+    .navbar-wrapper {
+        background-color: transparent; /* ingen baggrund */
+        padding: 10px 20px; /* beholder lidt padding */
+    }
+
+     .logo-container {
+        display: none;
+    }
+    /* Større logo på mobil */
     .logo {
-        max-width: 100vw; /* Maksimal bredde på mobil */
-        margin-top: 10vh; /* Luft fra top */
+        max-width: 20vw;
+        margin: 10px auto;
+        display: block;
     }
 
-   footer .footer-sections {
-        flex-direction: column; /* Lodret layout */
-        gap: 1.5vw; /* Afstand mellem sektioner */
-        text-align: center; /* Centreret tekst */
+    /* Hero video mindre høj på mobil */
+    header {
+        height: 50vh;
+    }
+
+    .hero-video {
+        height: 50vh;
+        object-fit: cover;
+    }
+
+    /* Dropdown-indhold tilpasset mobil */
+    .dropdown-content {
+        padding-top: calc(15vw + 40px);
+    }
+
+     /* Gør alle split-sektioner vertikale */
+  .split-section1,
+  .split-section2,
+  .split-section3 {
+    flex-direction: column;  /* Stabler venstre og højre */
+    min-height: auto;        /* Tillad højden at tilpasse indholdet */
+    padding: 2vh 0;
+  }
+
+  /* Juster padding i split-divs */
+  .split-section1 .split,
+  .split-section2 .split,
+  .split-section3 .split {
+    padding: 2vh 5vw;
+  }
+
+  /* Billeder skaleres ned og centreret */
+  .split-section1 .split.left img,
+  .split-section2 .split.right img,
+  .split-section3 .split.left img {
+    max-width: 90%;       /* Gør billeder mindre */
+    height: auto;         /* Bevarer proportioner */
+    margin: 0 auto 2vh;   /* Centrerer og giver margin */
+  }
+
+  /* Tekstjustering */
+  .split-section1 .split.right,
+  .split-section2 .split.left,
+  .split-section3 .split.right {
+    font-size: 18px;       /* Gør teksten lidt mindre */
+    text-align: center;    /* Centrer tekst på små skærme */
+    margin-top: 2vh;
+  }
+
+  /* Knapper centreret */
+  .split-section1 .split.right a,
+  .split-section2 .split.left a,
+  .split-section3 .split.right a {
+    margin: 2vh auto 0;    /* Centrer knap horisontalt */
+    display: inline-block;
+  }
+
+    /* Footer lodret layout */
+    footer .footer-sections {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
     }
 
     footer .footer-sections > div {
-        flex: none; /* Fjern flex */
-        width: 100%; /* Fuld bredde */
-        margin-bottom: 4vh; /* Afstand */
+        flex: none;
+        width: 100%;
+        margin-bottom: 20px;
     }
 
     footer {
-        height: auto; /* Tilpasser sig indhold */
-        padding: 40px 20px; /* Indvendig afstand */
-        margin-top: 10vh; /* Luft ovenfor */
+        height: auto;
+        padding: 40px 20px;
+        margin-top: 10vh;
     }
 
+    /* Sociale medier ikoner større på mobil */
     footer .sociale-medier img {
-        width: 6vw; /* Bredde */
-        height: 12vh; /* Højde */
-        transition: transform 0.2s ease; /* Smooth hover effekt */
+        width: 6vw;
+        height: 12vh;
     }
 }

@@ -78,116 +78,104 @@ html, body { /* Body-elementets styling starter */
 
 
 
-/* --- BURGER MENU --- */
-.dropdown { /* Dropdown menu container */
-    display: none; /* Skjult som standard */
-    position: absolute; /* Placeret absolut */
-    top: 0; /* Øverst */
-    right: 0; /* Til højre */
-    z-index: 1001; /* Ovenpå andre elementer */
+/* --- BURGER MENU & DROPDOWN --- */
+
+/* Dropdown container */
+.dropdown {
+    display: none;               /* Skjult på desktop */
+    position: absolute;          /* Absolut placering */
+    top: 2vh;                    /* Afstand fra toppen */
+    right: 0;                    /* Afstand fra højre */
+    z-index: 1000;               /* Lag over andre elementer */
 }
 
-.burger-icon { /* Menu ikon */
-    cursor: pointer; /* Klikbart */
-    display: flex; /* Flexbox */
-    align-items: center; /* Vertikal centrering */
-    justify-content: center; /* Horisontal centrering */
-    padding: 20px; /* Indvendig afstand */
-    z-index: 1002; /* Ligger over dropdown */
-    margin-top: 20px; /* Afstand til top */
+/* Burger ikon */
+.burger-icon {
+    cursor: pointer;             /* Klikbar cursor */
+    display: flex;               /* Flexbox til centrering */
+    align-items: center;         /* Vertikal centrering */
+    justify-content: center;     /* Horisontal centrering */
+    padding: 4vw;                /* Indvendig afstand */
+    z-index: 1001;               /* Ligger over dropdown */
 }
 
-/* --- Kryds (luk menu) --- */
-.close-dropdown { /* Luk-ikon */
-    display: none; /* Skjult */
-    position: absolute; /* Absolut placering */
-    top: 20px; /* Afstand fra top */
-    right: 20px; /* Afstand fra højre */
-    font-size: 2.5rem; /* Stor størrelse */
-    color: #D96209; /* Orange farve */
-    cursor: pointer; /* Klikbart */
-    z-index: 1010; /* Højt lag */
-    user-select: none; /* Kan ikke markeres */
-    transition: transform 0.2s ease; /* Smooth animation */
+/* Kryds / luk-menu */
+.close-dropdown {
+    display: none;               /* Skjult som standard */
+    position: absolute;          /* Absolut placering */
+    top: 2vh;                     /* Afstand fra top */
+    right: 4vw;                   /* Afstand fra højre */
+    font-size: 2.5rem;            /* Stor størrelse */
+    color: #D96209;               /* Orange farve */
+    cursor: pointer;              /* Klikbar cursor */
+    z-index: 1010;                /* Ligger over dropdown */
+    user-select: none;            /* Kan ikke markeres */
+    transition: transform 0.2s ease; /* Smooth hover */
 }
 
-.close-dropdown:hover { /* Hover-effekt */
-    transform: scale(1.2); /* Forstørres */
-    color: #F9E9D2; /* Lys farve */
+.close-dropdown:hover {
+    transform: scale(1.2);       /* Forstørres ved hover */
+    color: #F9E9D2;              /* Lys farve */
 }
 
 /* Vis kryds kun når menuen er åben */
-#burger-toggle:checked + .burger-icon + .dropdown-content .close-dropdown { /* Selector når checkbox er aktiv */
-    display: block; /* Gør kryds synligt */
+#burger-toggle:checked + .burger-icon + .dropdown-content .close-dropdown { 
+    display: block;
 }
 
-/* Dropdown-links hover (kun menupunkter, ikke logo) */
-.dropdown-content a:not(.logo-link):hover { /* Hover */
-    background-color: #F9E9D2; /* Lys baggrund */
-    color: #341510; /* Mørk tekst */
+/* Dropdown menu container */
+.dropdown-content {
+    position: fixed;             /* Fast på skærmen */
+    top: 0;                      /* Øverst */
+    right: -100%;                /* Starter udenfor skærmen til højre */
+    width: 100%;                 /* Fuld bredde */
+    height: 100%;                /* Fuld højde */
+    background-color: #341510;   /* Mørk baggrund */
+    display: flex;               /* Flexbox layout */
+    flex-direction: column;      /* Lodret layout */
+    align-items: center;         /* Centrer horisontalt */
+    padding-top: calc(15vw + 40px); /* Afstand fra toppen afhængig af logo */
+    transition: right 0.4s ease-in-out; /* Smooth slide effekt */
+    z-index: 1000;               /* Lag */
 }
 
-/* Logo margin-top justering */
-.dropdown-content .logo { /* Logo i dropdown */
-    margin-top: -30vh; /* Løftes op */
-}
-
-/* Skjul checkbox */
-#burger-toggle  { /* Checkbox */
-    display: none; /* Skjult */
-}
-
-/* --- Dropdown menu --- */
-.dropdown-content { /* Dropdown indhold */
-    position: fixed; /* Fast position */
-    top: 0; /* Øverst */
-    right: -100%; /* Skjult til højre */
-    width: 100%; /* Fuld bredde */
-    height: 100%; /* Fuld højde */
-    background-color: #341510; /* Mørk baggrund */
-    display: flex; /* Flexbox */
-    flex-direction: column; /* Lodret layout */
-    align-items: center; /* Center */
-    padding-top: calc(15vw + 40px); /* Afstand afhængigt af logo */
-    transition: right 0.4s ease-in-out; /* Slide effekt */
-    z-index: 1000; /* Lag */
-}
-
-.dropdown-content img { /* Billeder */
-    margin-top: -30vh; /* Flyttes op */
-}
-
-#burger-toggle:checked + .burger-icon + .dropdown-content { /* Når menu er åben */
-    right: 0; /* Trækkes frem */
+/* Når burger-menuen er tjekket */
+#burger-toggle:checked + .burger-icon + .dropdown-content {
+    right: 0;                    /* Trækkes ind på skærmen */
 }
 
 /* Links i dropdown */
 .dropdown-content a {
-    padding: 20px 0; /* Lodret padding */
-    text-decoration: none; /* Ingen underline */
-    color: white; /* Hvid tekst */
-    font-size: 24px; /* Stor tekst */
-    font-weight: bold; /* Fed */
-    width: 100%; /* Fylder hele bredden */
-    text-align: center; /* Centreret tekst */
-    border-bottom: 1px solid rgba(255,255,255,0.2); /* Lys kant */
+    padding: 4.5vh 0;            /* Lodret padding */
+    text-decoration: none;       /* Ingen underline */
+    color: white;                /* Hvid tekst */
+    font-size: 24px;             /* Stor tekst */
+    width: 100%;                 /* Fuld bredde */
+    text-align: center;          /* Centreret tekst */
+    border-bottom: 1px solid rgba(255,255,255,0.2); /* Let kant */
+    font-family: "Gotham light", sans-serif; 
+    font-weight: 300;            /* Let vægt */
+}
+
+/* Hover for dropdown links (ikke logo) */
+.dropdown-content a:not(.logo-link):hover {
+    background-color: #F9E9D2; 
+    color: #341510;
+}
+
+/* Logo i dropdown */
+.dropdown-content .logo { 
+    margin-top: -15vh;           /* Løftes op */
+    max-width: 50vw;             /* Maksimal størrelse */
+}
+
+/* Skjul checkbox */
+#burger-toggle {
+    display: none;
 }
 
 
-h1, h3, label{
-    font-family: "Gotham"; /* Navn */
-    src: url("../fonts/gotham_bold-webfont.woff") format("woff"); /* Filsti til bold version */
-    font-weight: 700; /* Bold vægt */
-    font-style: normal; /* Normal stil */
-}
-p{
-    font-family: "Gotham light"; /* Navngiver fonten */
-    src:url("../fonts/gotham_light-webfont.woff") format("woff"); /* Angiver fontfil */
-    font-weight: 300; /* Sætter vægt */
-    font-style: normal; /* Normal stil */
-}
-
-
+/*--- Kontakt side ---*/
 
 /*--kontakt formular--*/
 .mailbox{
@@ -485,16 +473,21 @@ footer .copyrights {
 
 /* --- RESPONSIVE --- */
 @media (max-width: 600px) { /* Media query for mobil */
-    .nav {
-        display: none; /* Skjul desktop menu */
+  .nav {
+        display: none;           /* Skjul desktop-menu */
     }
 
     .dropdown {
-        display: block; /* Vis burger-menu */
+        display: block;          /* Vis burger-menu */
     }
 
     .logo {
-        max-width: 250px; /* Større logo */
+        max-width: 50vw;         /* Størrelse på mobil */
+        margin-top: 0.5vh;
+    }
+
+    .dropdown-content {
+        padding-top: calc(15vw + 40px);
     }
 
     footer .footer-sections {
