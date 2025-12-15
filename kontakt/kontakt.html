@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emmys Kaffebar - KONTAKT</title>
     <link rel="stylesheet" href="kontakt.css">
+     <script src="kontakt.js" defer></script>
 </head>
 <body>
 
@@ -19,7 +20,7 @@
         <a href="../book-bord/book-bord.html">BOOK BORD</a>
         <a href="../events/events.html">EVENTS</a>
         <a href="../om-os/om-os.html">OM OS</a>
-        <a href="../kontakt/kontakt.html">KONTAKT</a>
+        <a href="../kontakt/kontakt.html" class="active">KONTAKT</a>
     </nav>
 
    
@@ -54,7 +55,6 @@
 
 
 <main>
-
     <!--mailbox container /parent-->
     <div class="mailbox">
 
@@ -65,17 +65,17 @@
         </div>
 
         <img src="icons/Frame 73.png" alt="Baggrund" class="baggrund">
-        
+        <div id="popup">
+                <button id="CloseB" onclick="Closepop()"><img src="icons/Kryds.svg" alt=""></button>
+                <p>Tak for din mail, beskeden er nu sendt afsted!</p>
+                </div>
         <div id="formular">
             <form action="#" method="post" class="sendbox">
                 <label for="name">Name: </label><br>
                 <input type="text" id="name" name="name"><br><br>
                 <label for="email">E-mail: </label><br>
                 <input type="email" id="email" name="email"><br><br>
-                <div id="popup">
-                <button id="CloseB" onclick="Closepop()"><img src="icons/Kryds.svg" alt=""></button>
-                <p>Tak for din mail, beskeden er nu sendt afsted!</p>
-                </div>
+                
                 <label for="message">Message: </label><br>
                 <textarea id="message" name="message"></textarea><br><br>
             </form>   
@@ -87,7 +87,7 @@
          <button id="button" onclick="Sendb()"><p>Send</p></button>
 
     </div>
-   
+   <!--SoMe conainer-->
     <div class="some">
 
         <div id="sometekst">
@@ -112,6 +112,7 @@
 
     </div>
 
+    <!--Lokation /maps container-->
     <div class="lokation">
         <h1>vi er til at finde her</h1>
         <div id="pin">
@@ -121,7 +122,6 @@
     </div>
 
 
-    
 </main>
 
 <footer>

@@ -62,7 +62,13 @@ html, body { /* Body-elementets styling starter */
     transform: translateY(-3px); /* Løfter element */
 } /* Slut hover */
 
-
+/* Aktiv navigation */
+.nav a.active {
+    background-color: #D96209;
+    color: #F9E9D2;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transform: translateY(-3px);
+}
 
 /* --- LOGO --- */
 .logo-container { /* Container til logo */

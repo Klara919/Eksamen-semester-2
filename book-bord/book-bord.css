@@ -61,6 +61,14 @@ html, body { /* Body og html elementer får styling */
     transform: translateY(-3px); /* Løftes let op */
 } /* Slut hover */
 
+/* Aktiv navigation */
+.nav a.active {
+    background-color: #D96209;
+    color: #F9E9D2;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transform: translateY(-3px);
+}
+
 /* --- LOGO --- */
 .logo-container { /* Container til logo */
     display: flex; /* Flexbox */
@@ -599,6 +607,85 @@ footer .copyrights {
         padding-top: calc(15vw + 40px);
     }
 
+
+
+  section {
+    padding: 60px 16px;
+  }
+
+
+  #guest-section img {
+    margin-top: -10vh;
+    max-width: 80vw;
+  }
+
+  /* --- KALENDER --- */
+  .calendar {
+    max-width: 100%;
+  }
+
+  .calendar-weekdays {
+    font-size: 12px;
+
+  }
+
+  .calendar-days button {
+    width: 42px;
+    height: 42px;
+    font-size: 14px;
+    margin-left: 1vh;
+  }
+
+  #date-section img {
+    margin-top: -15vh;
+    max-width: 80vw;
+  }
+
+  /* --- TIDSVÆLGER --- */
+  #time-buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 3 pr. række */
+    gap: 12px;
+    max-width: 100%;
+    justify-items: center; /* centrerer knapper i kolonner */
+  }
+
+  .time-btn {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%; /* gør dem cirkulære */
+    font-size: 16px;
+
+    /* centrer tekst */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+}
+
+  #time-section img {
+    margin-top: -12vh;
+    max-width: 80vw;
+  }
+
+  /* --- BORDVALG --- */
+  .room {
+    max-width: 100%;
+    height: 55vh;/
+
+  }
+
+  .table {
+    width: 42px;
+    height: 42px;
+    font-size: 12px;
+  }
+
+  .bar {
+    width:70vw;
+    height: 5vh;
+  }
+
     footer .footer-sections {
         flex-direction: column; /* Lodret layout */
         gap: 20px; 
@@ -616,4 +703,4 @@ footer .copyrights {
         padding: 40px 20px;
         margin-top: 10vh; /* Top margin */
     }
-}
+ }

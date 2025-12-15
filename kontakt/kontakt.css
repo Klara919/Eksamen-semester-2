@@ -62,7 +62,13 @@ html, body { /* Body-elementets styling starter */
     transform: translateY(-3px); /* Løfter element */
 } /* Slut hover */
 
-
+/* Aktiv navigation */
+.nav a.active {
+    background-color: #D96209;
+    color: #F9E9D2;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transform: translateY(-3px);
+}
 
 /* --- LOGO --- */
 .logo-container { /* Container til logo */
@@ -177,12 +183,13 @@ html, body { /* Body-elementets styling starter */
 
 /*--- Kontakt side ---*/
 
+
 /*--kontakt formular--*/
 .mailbox{
-    display: flex;
+    display: flex; /*--brug af flex så den er flexibel og elementerne kan rykkes efter behov--*/
     flex-direction: column; /*--flex direction colum for at tvinge alt indholdet til at stå på en linje--*/
     width: 120vh; /*--brug af vh for at scale på viewport height, og nemmmere scale i responsiv--*/
-    height: auto;
+    height: auto; /*-- height auto, så den automatisk følger med resten--*/
     margin-top: 80px;/*-- padding og margin for at lave mellemrum mellem indholdet.--*/
     padding-bottom: 80px;
     justify-self: center;/*--brug af både justify self og align items, for at stabilisere indholdet.--*/
@@ -198,15 +205,15 @@ html, body { /* Body-elementets styling starter */
 /*--bagrunden--*/
 .background{
     display:flex;
-    position: absolute;
+    position: absolute; /*--brug af position absolute, så den kan rykkes efter behov, og ikke påvirker de andre elementer--*/
     z-index: -1;/*--brug af z-index for at lægge lagende ovenpå hinaden på 3 D aksen--*/
 }
 /*--formularen--*/
 #formular{
     display: flex; /*--brug af display flex, for at kunne frit bevæge indholdet med position--*/
     position: absolute; /*--brug af position absolut, for at kunne rykke den frit, med de mål der gives--*/
-    margin-top: 240px; /*-- brug af margin for at skubbe den ned--*/
-    z-index: 0;
+    margin-top: 40vh; /*-- brug af margin for at skubbe den ned--*/
+    z-index: 0; /*--brug af z-index for at bestemme dens position på 3d aksen, så den kan ligge i mellem de andre elementer.--*/
     font-family: 'Gotham light', sans-serif;
 }
 /*--selve formularen--*/
@@ -248,6 +255,7 @@ html, body { /* Body-elementets styling starter */
     margin: auto;
     display: flex;
     position: absolute;
+    top: 120%;
     border: none;
     border-radius: 10px;
     opacity: 0.0;
@@ -260,6 +268,7 @@ html, body { /* Body-elementets styling starter */
     width: 100%;
     margin: auto;
 }
+/*--lukke knappen--*/
 #CloseB{
     position: absolute;
     right: 10px;
@@ -292,7 +301,7 @@ html, body { /* Body-elementets styling starter */
     z-index: 2;
     border: none;
 }
-
+/*--hover til knap--*/
 button :hover{
     transform: scale(1.5);
 }
@@ -308,7 +317,7 @@ button :hover{
 /*--overskrift og brødtekst til sektionen--*/
 #sometekst{ /*--child. bestemmer stilen for teksten.--*/
     display: flex;
-    flex-direction: column; /*--fæex direction collum, for at fasteholde retningen--*/
+    flex-direction: column; /*--flex direction collum, for at fasteholde retningen--*/
     text-align: center;
     
 }
@@ -319,7 +328,7 @@ button :hover{
     flex-direction: row; /*--direction row, for at ændre html's naturelige opsætning--*/
     scale: calc(0.8);/*--scale, for at scalere den ned--*/
 }
-
+/*--hover til ikoner--*/
 .ikoner :hover{
     transition: 200ms;
     transform: scale(0.9);
@@ -354,7 +363,7 @@ button :hover{
     justify-self: center;
     align-items: center; 
 }
-
+/*--pin plus hover til pin--*/
 #pin{
     display: flex;
     position: absolute;
@@ -374,18 +383,20 @@ button :hover{
 
 
 
+/*--media query for responsiv, 500 px, for større telefoner og små--*/
 @media screen and (max-width: 500px){
 
     main{
-        overflow: clip;
+        overflow: clip; /*--overflow clip for at indholdt ikke går udover grænsen body og main har sat--*/
     }
 
     .mailbox{
-        scale: calc(0.5);
+        scale: calc(0.5); /*--brug af scale, da vi har brugt vh tidligere, da det er nemmere at scalere ned--*/
         margin: -100px;
     }
     .formular{
         display: flex;
+
     }
     
 
@@ -398,9 +409,10 @@ button :hover{
         scale: calc(0.5);
         margin-bottom: -100px;
     }
+    #popup{
+        top: 60%;
+    }
 }
-
-
 
 
 
