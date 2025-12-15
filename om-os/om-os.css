@@ -203,14 +203,13 @@ html, body { /* Body-elementets styling starter */
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 150px; /* afstand ned fra toppen */
 }
 
 /* Selve "3D"-containeren for bogen */
 .book-container {
   position: relative;
   width: 420px;          /* lukket bog-bredde */
-  height: 520px;
+  height: 550px;
   transition: transform 0.5s ease, box-shadow 0.5s ease;
   transform-origin: center;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
@@ -228,14 +227,102 @@ html, body { /* Body-elementets styling starter */
 }
 
 
-/* ========== FORSIDE & BAGSIDE ========== */
+/* =========================================================
+   Emmy’s – Om os (bog) – semantisk HTML version
+   ========================================================= */
 
-/* Generel stil for både for- og bagside */
-.book-cover {
+
+/* ========== TYPOGRAFI ========== */
+.page-label,
+.page-text,
+.page-title {
+  font-family: "Shadows Into Light", cursive;
+  color: #341510;
+}
+
+/* =========================================================
+   LAYOUT: Bog centreret + intro overlay
+   ========================================================= */
+.book-layout{
+  position: relative;
+  width: 100%;
+  min-height: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding: 60px 0;
+}
+
+.book-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Intro overlay */
+.book-intro{
+  position: absolute;
+  left: 6vw;
+  top: 200px;
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  max-width: 320px;
+  color: #4b3a29;
+  font-family: "Gotham light", sans-serif;
+}
+
+.book-intro-text{
+  font-size: 18px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.book-intro-arrow{
+  width: 320px;
+  height: auto;
+}
+
+/* =========================================================
+   SELVE BOGEN
+   ========================================================= */
+.book-container{
+  position: relative;
+  width: 420px;
+  height: 555px;
+
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  transform-origin: center;
+
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+  border-radius: 14px;
+
+  background: transparent;
+  perspective: 1400px;
+
+  overflow: hidden;
+}
+
+/* Åben bog (desktop: 2 sider) */
+.book-container.open{
+  width: 840px;
+  transform: translateY(-4px);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================================================
+   FORSIDE & BAGSIDE (nu <section>)
+   ========================================================= */
+.book-cover{
   position: absolute;
   inset: 0;
   width: 100%;
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 2rem;
 
   display: flex;
@@ -251,364 +338,302 @@ html, body { /* Body-elementets styling starter */
   transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.2s linear;
   backface-visibility: hidden;
   transform-style: preserve-3d;
-  z-index: 5; /* ligger over indersiderne */
+
+  z-index: 3;
 }
 
-/* Både forsiden og bagsiden bruger samme baggrundsbillede */
 .book-cover.front,
-.book-cover.back {
+.book-cover.back{
   background-image: url("../photos/front.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-/* Lille hover-effekt når man holder musen over omslag */
-.book-cover:hover {
+.book-cover:hover{
   transform: translateY(-2px);
-  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 16px 30px rgba(0,0,0,0.3);
 }
 
-.book-cover h1 {
+.book-cover h1{
   font-size: 18px;
   font-family: "Gotham light", sans-serif;
+    margin-right: 4vw;
 }
 
-.book-cover p {
-  margin-top: 0.75rem;
+.book-cover p{
+  margin: 0.75rem 0 0;
   font-size: 14px;
   font-family: "Gotham light", sans-serif;
+  margin-right: 3.5vw;
+    margin-bottom: 1rem;
 }
 
-/* Logo på forsiden */
-.cover-logo {
-  width: 150px;
+.cover-logo{
+  width: 20vw;
+  margin-right: 3.5vw;
   height: auto;
   margin-bottom: 1rem;
-  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.3));
 }
 
-
-/* ========== KNAPPER PÅ OMSLAG ========== */
-
-.book-btn {
-  padding: 0.5rem 1.2rem;
+/* knapper */
+.book-btn{
+  padding: 0.55rem 1.35rem;
   font-size: 14px;
   border-radius: 10px;
   color: #d96207;
   background: transparent;
   border: 1px solid #d96207;
+  margin-right: 4vw;
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
 }
 
-.book-btn:hover {
+.book-btn:hover{
   background: #d96207;
   color: #f3dfc5;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.14);
 }
 
 .front-btn,
-.back-btn {
-  margin-top: 0.5rem;
-}
+.back-btn{ margin-top: 0.5rem; }
 
-
-/* ========== INDERSIDER (SIDERNE I BOGEN) ========== */
-
-/* Grid med venstre + højre side (desktop) */
-.book-inner {
+/* =========================================================
+   INDERSIDER (nu <section id="bookInner">)
+   ========================================================= */
+.book-inner{
   position: absolute;
   inset: 0;
-  display: none;               /* vises først når bogen åbnes i JS */
-  grid-template-columns: 1fr 1fr;
+  display: none; /* JS tænder */
   background-image: url("../photos/papir.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
-  transform-style: preserve-3d;
+  z-index: 2;
 }
 
-/* En enkelt side (venstre eller højre) */
-.page {
+/* spreads – nu <article class="spread"> */
+.spread{ display: none; height: 100%; }
+.spread.is-active{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* side – nu <section class="page ..."> */
+.page{
   position: relative;
   padding: 2rem 1.6rem;
-  border-right: 1px solid rgba(0, 0, 0, 0.08);
-  background-image: url("../photos/papir.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  border-right: 1px solid rgba(0,0,0,0.08);
 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 0.6rem;
+  gap: 0.65rem;
+
   cursor: pointer;
-  transform-style: preserve-3d;
   backface-visibility: hidden;
 }
 
-/* Højre side skal ikke have ekstra kant i midten */
-.page:last-child {
-  border-right: none;
-}
+.page:last-child{ border-right: none; }
 
-/* Wrapper om tekstdelen på hver side */
-.page-content {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Lille label øverst (fx “Om os”) */
-.page-label {
+/* label + tekst (label er nu <h2>) */
+.page-label{
   font-size: 18px;
   letter-spacing: 0.12em;
   color: #4b3a29;
+  margin: 0; /* vigtigt når det er en h2 */
 }
 
-/* Overskrift på siden */
-.page-title {
-  font-size: 18px;
-  margin: 0 0 0.5rem;
-}
-
-/* Brødtekst på siden */
-.page-text {
+.page-text{
+  margin: 0;
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.55;
   color: #4b3a29;
   max-width: 95%;
-  white-space: pre-line; /* respekterer \n fra JavaScript-teksten */
+  white-space: pre-line;
 }
 
-
-/* ========== FOTO + TAPE (NEDERST PÅ SIDEN) ========== */
-
-/* Hele foto-området nederst på en side */
-.page-photo-wrapper {
-  margin-top: auto;    /* skubber fotos ned mod bunden af siden */
+/* =========================================================
+   FOTO + TAPE
+   ========================================================= */
+.page-photo-wrapper{
+  margin-top: auto;
   width: 100%;
 }
 
-/* Række med ét eller flere fotos */
-.photo-row {
+.photo-row{
   display: flex;
-  gap: 2.5rem;
+  gap: 2.2rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
 }
 
-/* Lille container rundt om hvert foto + tape */
-.photo-taped {
+.photo-taped{
   position: relative;
   display: inline-block;
 }
 
-/* Selve fotoet – bredde kan overskrives via inline style fra JS */
-.photo-taped img {
-  width: 130px;          /* default på desktop */
+.photo-taped img{
+  width: 140px;
   max-width: 100%;
   height: auto;
   display: block;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.30);
+  border-radius: 2px;
 }
 
-/* Neutral tape-boks – position og rotation sættes via inline style fra JS */
-.tape {
+.tape{
   position: absolute;
   width: 60px;
   height: 20px;
-  background: rgba(236, 231, 217, 0.95);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+  background: rgba(236,231,217,0.95);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.22);
+  border-radius: 2px;
 }
 
-
-/* ========== BLADRE-ANIMATIONER ========== */
-/* Klassen .flip-next / .flip-prev tilføjes midlertidigt via JS */
-
-.page.flip-next {
+/* =========================================================
+   BLADRE-ANIMATIONER
+   ========================================================= */
+.page.flip-next{
   animation: flipNext 0.7s ease;
   transform-origin: left center;
 }
 
-.page.flip-prev {
+.page.flip-prev{
   animation: flipPrev 0.7s ease;
   transform-origin: right center;
 }
 
-/* Let skygge/gradient over siden (kan fjernes hvis du ikke bruger den) */
-.page::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to left, rgba(0,0,0,0.15), rgba(0,0,0,0));
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-/* Fremad-bladring */
-@keyframes flipNext {
+@keyframes flipNext{
   0%   { transform: perspective(1400px) rotateY(0deg); }
   30%  { transform: perspective(1400px) rotateY(-45deg) skewY(3deg); }
   65%  { transform: perspective(1400px) rotateY(-120deg) skewY(-2deg); }
   100% { transform: perspective(1400px) rotateY(-180deg); }
 }
 
-/* Tilbage-bladring */
-@keyframes flipPrev {
+@keyframes flipPrev{
   0%   { transform: perspective(1400px) rotateY(0deg); }
   30%  { transform: perspective(1400px) rotateY(45deg) skewY(-3deg); }
   65%  { transform: perspective(1400px) rotateY(120deg) skewY(2deg); }
   100% { transform: perspective(1400px) rotateY(180deg); }
 }
 
-
-/* ========== NAVIGATION UNDER BOGEN ========== */
-/* Knapperne “Forrige” / “Næste” nede under bogen */
-
-.nav {
-  display: none;  /* vises først når .visible sættes i JS */
+/* =========================================================
+   NAV UNDER BOGEN (nu <nav id="nav">)
+   ========================================================= */
+.book-nav{
+  display: none;
   gap: 50px;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  margin-top: 18px;
 }
 
-.nav.visible {
+.book-nav.visible{
   display: flex;
 }
 
-.nav button {
-  padding: 0.5rem 0.9rem;
+.book-nav button{
+  padding: 0.5rem 1.1rem;
   font-size: 14px;
   border-radius: 10px;
   cursor: pointer;
-  color: #d96207;
+  color: #D96209;          /* ORANGE */
   background: transparent;
-  border: 1px solid #d96209;
-  display: inline-flex;
-  align-items: center;
-  transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+  border: 1px solid #D96209;
 }
 
-.nav button:hover:not(:disabled) {
-  background: #d96207;
-  color: #f3dfc5;
-  transform: translateY(-1px);
+.book-nav button:hover{
+  background: #D96209;
+  color: #F9E9D2;
 }
 
 
-/* ========== INTRO-TEKST + PIL (KUN DESKTOP) ========== */
+/* =========================================================
+   MOBIL: 1 SIDE AD GANGEN (body.mobile-left/right i JS)
+   ========================================================= */
+@media (max-width: 800px){
 
-/* Brug .desktop-only på elementer, der aldrig må ses på mobil */
-.desktop-only {
-  display: block;
-}
+  .desktop-only{ display: none !important; }
 
-/* Tekst + pil til venstre for bogen (desktop-layout) */
-.book-intro {
-  position: absolute;
-  left: 4%;
-  top: 220px;
-  z-index: 50;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  color: #4b3a29;
-  font-family: "Gotham light", sans-serif;
-}
-
-.book-intro-text {
-  font-size: 18px;
-  max-width: 260px;
-  line-height: 1.5;
-}
-
-.book-intro-arrow {
-  width: 450px;
-  height: auto;
-}
-
-
-/* ========== RESPONSIV: TABLET & MOBIL ========== */
-
-/* Skjul intro-tekst/pil allerede på lidt mindre skærme */
-@media (max-width: 1400px) {
-  .book-intro {
-    display: none;
-  }
-}
-
-/* Mobil-tilpasninger (bog fylder hele skærmen, én side ad gangen i JS) */
-@media (max-width: 800px) {
-
-  /* Skjul alle .desktop-only-elementer på mobil */
-  .desktop-only {
-    display: none !important;
-  }
-
-  /* Bogen rykkes lidt op så den ikke står for langt nede */
-  .book-wrapper {
-    margin-top: 80px;
-  }
-
-  /* Bogens bredde/højde på mobil */
-  .book-container {
+  .book-container{
     width: 350px;
     height: 500px;
   }
 
-  .book-container.open {
-    width: 350px; /* stadig 1 side bred, selvom bogen er "open" i JS */
+  .book-container.open{
+    width: 350px;
   }
 
-  /* Indersider: kun én kolonne – JS vælger venstre/højre side */
-  .book-inner {
+  .spread.is-active{
     grid-template-columns: 1fr;
   }
 
-  /* Mindre padding og tekststørrelser på selve siderne */
-  .page {
+  .spread.is-active .page:nth-child(2){
+    display: none;
+  }
+
+  body.mobile-right .spread.is-active .page:nth-child(1){
+    display: none;
+  }
+  body.mobile-right .spread.is-active .page:nth-child(2){
+    display: flex;
+  }
+
+  body.mobile-left .spread.is-active .page:nth-child(1){
+    display: flex;
+  }
+  body.mobile-left .spread.is-active .page:nth-child(2){
+    display: none;
+  }
+
+  .page{
     padding: 1.2rem 1.1rem;
   }
 
-  .page-label {
-    font-size: 16px;
-  }
-
-  .page-title {
-    font-size: 16px;
-  }
-
-  .page-text {
+  .page-label{ font-size: 16px; }
+  .page-text{
     font-size: 13px;
-    line-height: 1.4;
+    line-height: 1.45;
   }
 
-  /* Fotos lidt tættere på teksten og lidt mindre */
-  .page-photo-wrapper {
-    margin-top: 0.3rem;
+  .page-photo-wrapper{
+    margin-top: 30px;
+    margin-left: 25px;
   }
 
-  .photo-row {
-    justify-content: flex-start;
-    gap: 1.1rem;
-  }
-
-  .photo-row .photo-taped img {
+  .photo-taped img{
     width: 105px;
-    max-width: 40vw;
   }
 
-  .tape {
+  /* Nulstiller inline tape placering på mobil */
+  .photo-taped .tape{
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+
     width: 48px;
     height: 18px;
   }
+
+  .photo-taped .tape:nth-of-type(1){
+    top: -10px !important;
+    left: -10px !important;
+    transform: rotate(-8deg) !important;
+  }
+
+  .photo-taped .tape:nth-of-type(2){
+    bottom: -10px !important;
+    right: -10px !important;
+    transform: rotate(8deg) !important;
+  }
 }
-
-
 
 
 
@@ -694,7 +719,7 @@ footer .copyrights {
     .dropdown-content {
         padding-top: calc(15vw + 40px);
     }
-    
+
    footer .footer-sections {
         flex-direction: column; /* Lodret layout */
         gap: 1.5vw; /* Afstand mellem sektioner */
