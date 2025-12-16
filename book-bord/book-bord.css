@@ -17,6 +17,7 @@ html, body { /* Body og html elementer får styling */
     src:url("../fonts/gotham_light-webfont.woff") format("woff"); /* Placering af fontfil */
     font-weight: 300; /* Let font-vægt */
     font-style: normal; /* Normal stil */
+    font-display: swap; /* Forbedrer indlæsning */
 } /* Slut font-face */
 
 /* Custom font "Gotham bold" */
@@ -25,6 +26,7 @@ html, body { /* Body og html elementer får styling */
     src: url("../fonts/gotham_bold-webfont.woff") format("woff"); /* Placering af bold fontfil */
     font-weight: 700; /* Bold vægt */
     font-style: normal; /* Normal stil */
+    font-display: swap; /* Forbedrer indlæsning */
 } /* Slut font-face */
 
 

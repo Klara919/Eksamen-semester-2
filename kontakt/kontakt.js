@@ -10,11 +10,11 @@ function Sendb() { //function, send til formularen, der fortæller den hvad den 
     
     // id frame, funktion. animation af formularen.
     function frame(){  // for at navngive den.
-        if (pos == 70   ) { //laver en if statement, hvis positionen er = x antal, så vil den gøre "det her"
+        if (pos == 29) { //laver en if statement, hvis positionen er = x antal, så vil den gøre "det her"
             clearInterval(id); // her kalder vi på variabl id'et fra før, for at fjerne det id den holder
         } else { // en del af if strukturen, vi bruger else hvis if statement ikke er opfyldt så kigger den på else, og vælger den mulighed, til den endelig rammer if.
             pos++; // brug af pos ++ da positionen skal op 70, istedetfor 3.
-            elem.style.top = pos + 'vh'; //tempoary style css,top, til formularen, top skal skubbe den ned. = pos, her henter vi variablen, og tilføjer vh som en regel for typen af mål der bruges, så den er bedre responsivt, 
+            elem.style.top = pos + 'vw'; //tempoary style css,top, til formularen, top skal skubbe den ned. = pos, her henter vi variablen, og tilføjer vh som en regel for typen af mål der bruges, så den er bedre responsivt, 
             zpop.style.zIndex = "25"; //zpop, en ny tempoary style, til vores popup, som trækker z indeksen op fra -10 til 25.
         }
     }
@@ -38,12 +38,11 @@ function Sendb() { //function, send til formularen, der fortæller den hvad den 
                }
               
            }       
-    }, 1500); // selve time-outen, som er beregnet i ms
+    }, 1000); // selve time-outen, som er beregnet i ms
 // pop-up kryds.
 }
 function Closepop(){ // kald på function
     var elem = document.getElementById("popup");// for element til at indholde id popup, ind i css filen, kontakt css.
     elem.style.display = "none"; //temp style css
     elem.style.zIndex = "-10"; //temp style css for at bestemme dens plads på 3d aksen, sat til -10 så den ikke påvirker andre elementer i css og html.
-
-}
+    }

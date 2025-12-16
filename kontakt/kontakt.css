@@ -17,6 +17,7 @@ html, body { /* Body-elementets styling starter */
     src:url("../fonts/gotham_light-webfont.woff") format("woff"); /* Angiver fontfil */
     font-weight: 300; /* Sætter vægt */
     font-style: normal; /* Normal stil */
+    font-display: swap; /* Forbedrer indlæsning */
 } /* Slut på font-face */
 
 /* Import af custom font "Gotham" (bold) */
@@ -25,6 +26,7 @@ html, body { /* Body-elementets styling starter */
     src: url("../fonts/gotham_bold-webfont.woff") format("woff"); /* Filsti til bold version */
     font-weight: 700; /* Bold vægt */
     font-style: normal; /* Normal stil */
+    font-display: swap; /* Forbedrer indlæsning */
 } /* Slut custom font */
 
 
@@ -181,9 +183,6 @@ html, body { /* Body-elementets styling starter */
 }
 
 
-/*--- Kontakt side ---*/
-
-
 /*--kontakt formular--*/
 .mailbox{
     display: flex; /*--brug af flex så den er flexibel og elementerne kan rykkes efter behov--*/
@@ -228,7 +227,8 @@ html, body { /* Body-elementets styling starter */
     width: 100%;
     padding: 8px;  
     margin-bottom: 15px;
-    border: none;
+    border-color: #D96207;
+    border-style: solid; /*--border style for at give den en solid farve--*/
     border-radius: 4px;
     background-color: #E9E9E9;
 }
@@ -238,6 +238,7 @@ html, body { /* Body-elementets styling starter */
 .sendbox textarea {
     height: 100px;
     resize: vertical;
+    border-width: 2px; /*--brug af border width, for at give den den samme størelse som formularen over --*/
 }
 /*--forgrunden--*/
 .envelope{
@@ -268,7 +269,7 @@ html, body { /* Body-elementets styling starter */
     width: 100%;
     margin: auto;
 }
-/*--lukke knappen--*/
+/*--close button--*/
 #CloseB{
     position: absolute;
     right: 10px;
@@ -285,7 +286,7 @@ html, body { /* Body-elementets styling starter */
     width: auto;
 }
 /*--knap der udløser pop-up--*/
-
+/*--send knappen--*/
 #button{
     display: flex;
     position: absolute;
@@ -326,9 +327,9 @@ button :hover{
     display: flex;
     justify-content: center;
     flex-direction: row; /*--direction row, for at ændre html's naturelige opsætning--*/
-    scale: calc(0.8);/*--scale, for at scalere den ned--*/
+    scale: calc(0.5);/*--scale, for at scalere den ned--*/
 }
-/*--hover til ikoner--*/
+
 .ikoner :hover{
     transition: 200ms;
     transform: scale(0.9);
@@ -363,7 +364,7 @@ button :hover{
     justify-self: center;
     align-items: center; 
 }
-/*--pin plus hover til pin--*/
+/*--pin med hover--*/
 #pin{
     display: flex;
     position: absolute;
@@ -387,11 +388,11 @@ button :hover{
 @media screen and (max-width: 500px){
 
     main{
-        overflow: clip; /*--overflow clip for at indholdt ikke går udover grænsen body og main har sat--*/
+        overflow: clip;
     }
 
     .mailbox{
-        scale: calc(0.5); /*--brug af scale, da vi har brugt vh tidligere, da det er nemmere at scalere ned--*/
+        scale: calc(0.5);
         margin: -100px;
     }
     .formular{
@@ -413,7 +414,13 @@ button :hover{
         top: 60%;
     }
 }
-
+/*--media screen, tilpasset en større skærm--*/
+@media screen and (max-width: 1440px) {
+    
+    #formular{
+        margin-top: 15vw;
+    }
+}
 
 
 
