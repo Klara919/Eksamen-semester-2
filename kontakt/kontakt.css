@@ -415,10 +415,10 @@ button :hover{
     }
 }
 /*--media screen, tilpasset en større skærm--*/
-@media screen and (max-width: 1440px) {
+@media screen and (min-width: 1440px) {
     
     #formular{
-        margin-top: 15vw;
+        margin-top: 16vw;
     }
 }
 
