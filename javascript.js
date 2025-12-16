@@ -8,7 +8,7 @@ window.addEventListener("scroll", () => {
     const scrollPosition = window.scrollY;
 
     // Multiplikator, der styrer hvor hurtigt marquee bevæger sig i forhold til scroll
-    const speed = 0.5;
+    const speed = 0.7;
 
     // Anvender CSS transform for at flytte marquee til venstre baseret på scrollPosition
     // Negativt tegn (-) fordi vi vil bevæge elementet mod venstre, når man scroller ned
