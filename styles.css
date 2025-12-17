@@ -15,7 +15,7 @@ html, body {
     font-weight: 300; /* Let vægt */
     font-style: normal; /* Normal stil */
     font-display: swap; /* Forbedrer indlæsning */
-} /* Slut font-face */
+} 
 
 /* Import af custom font "Gotham" (bold) */
 @font-face { /* Definerer endnu en font */
@@ -24,7 +24,7 @@ html, body {
     font-weight: 700; /* Bold vægt */
     font-style: normal; /* Normal stil */
     font-display: swap; /* Forbedrer indlæsning */
-} /* Slut font-face */
+} 
 
 header {
     position: relative;
